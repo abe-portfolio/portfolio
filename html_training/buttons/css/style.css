@@ -1,0 +1,160 @@
+/*まずはお決まりのボックスサイズ算出をborer-boxに */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;/*rem算出をしやすくするために*/
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+.buttons{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 角丸ボタン */
+.kakumaruBtn--orange,
+a.kakumaruBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.kakumaruBtn--orange:hover,
+a.kakumaruBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+/* 角丸大ボタン */
+.BIGkakumaruBtn--orange,
+a.BIGkakumaruBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.BIGkakumaruBtn--orange:hover,
+a.BIGkakumaruBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+a.BIGkakumaruBtn--radius {
+  border-radius: 100vh;
+}
+
+
+/* 角丸(複数行)ボタン */
+.kakumaruLinesBtn--orange,
+a.kakumaruLinesBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.kakumaruLinesBtn--orange:hover,
+a.kakumaruLinesBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+/* 角丸大(複数行)ボタン */
+.BIGkakumaruLinesBtn--orange,
+a.BIGkakumaruLinesBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.BIGkakumaruLinesBtn--orange:hover,
+a.BIGkakumaruLinesBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+a.BIGkakumaruLinesBtn--radius {
+  border-radius: 100vh;
+}
+
+
+/* 角丸(複数行-アイコン)ボタン */
+.kakumaruLinesIconBtn--orange,
+a.kakumaruLinesIconBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.kakumaruLinesIconBtn--orange:hover,
+a.kakumaruLinesIconBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+.fa-position-left {
+  position: absolute;
+  top: calc(50% - .5em);
+  left: 1rem;
+}
+
+
+/* 角丸大(複数行-アイコン) */
+.BIGkakumaruLinesIconBtn--orange,
+a.BIGkakumaruLinesIconBtn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.BIGkakumaruLinesIconBtn--orange:hover,
+a.BIGkakumaruLinesIconBtn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+.fa-position-left {
+  position: absolute;
+  top: calc(50% - .5em);
+  left: 1rem;
+}
+
+.BIGkakumaruLinesIconBtn--radius,
+a.BIGkakumaruLinesIconBtn--radius,
+button.BIGkakumaruLinesIconBtn--radius
+{
+    border-radius: 100vh;
+}
+
+
+/* 角丸大(複数行-アイコン) */
+a.solidBtn--yellow {
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+a.solidBtn--yellow:hover {
+  margin-top: 3px;
+  color: #000;
+  background: # fff20a;
+  border-bottom: 2px solid #ccc100;
+}

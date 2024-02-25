@@ -1,0 +1,25 @@
+毎日の全国データ一覧表
+https://www.data.jma.go.jp/stats/data/mdrr/synopday/index.html
+
+12/24現在では12/23のデータがdata2.html　※毎日更新であれば、常にdata2.htmlを取得しに行けばよい
+https://www.data.jma.go.jp/stats/data/mdrr/synopday/data2.html
+
+
+with open()について
+with が付くことによって、ブロック（処理）を抜けるときにファイルを自動的にクローズする。
+また、エラー発生時にも自動的にかつ確実にファイルをクローズしてくれる。
+
+■Pythonライブラリについて
+BeautifulSoup4は
+pip install BeautifulSoup4
+でインストール可能。
+
+import文は、
+from bs4 import BeautifulSoup
+
+##### 使用例 ####################################
+from bs4 import BeautifulSoup
+html = "<body><h1>python入門</h1><p>pythonの基礎について学習します</p></body>"
+soup = BeautifulSoup(html, "html.parser")
+print(soup.h1)
+#################################################

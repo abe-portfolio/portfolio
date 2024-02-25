@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <h2>Now Loading...</h2>
+    </div>
+
+    <div class="content">
+        <h1>This is a Content</h1>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(() => {
+                //loadrを消す
+                const loader = document.querySelector(".loader");
+                loader.classList.add("loaded");
+
+                //contentを見せる
+                const content = document.querySelector(".content");
+                content.style.visibility = "visible";
+            },1300);
+        }
+    </script>
+</body>
+</html>

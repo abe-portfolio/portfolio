@@ -1,0 +1,9 @@
+2024.01
+Python:3.11.7
+flet:0.18.0
+
+
+メモ
+import flet as ft
+・ft.add(ft.Text(value="Hello, World!"))　で「Text」や「value」は大文字小文字の判定がある。
+　ft.textやValue=ではエラーになる。

@@ -1,0 +1,43 @@
+■インストール
+https://www.rust-lang.org/ja/tools/install　からインストーラーをダウンロードして実行
+
+■Visual Studioまたは Microsoft C++ Build Tools をインストール
+これらはC言語のコンパイラだが、RustのビルドシステムがC言語のコンパイラを使用するため必要
+
+
+■バージョン確認
+cargo --version
+// cargo 1.76.0 (c84b36747 2024-01-18)
+
+rustc -V
+// rustc 1.76.0 (07dca489a 2024-02-04)
+
+rustup -V
+// rustup 1.26.0 (5af9b9484 2023-04-05)
+
+rustup show
+// Default host: x86_64-pc-windows-msvc
+// rustup home:  C:\Users\xhskw\.rustup
+//
+// stable-x86_64-pc-windows-msvc (default)
+// rustc 1.76.0 (07dca489a 2024-02-04)
+
+
+■アップデート
+rustup update
+// stable-x86_64-pc-windows-msvc unchanged 変更なし＝最新版
+
+■コンパイル
+cargo build ファイル名.rs
+
+
+■コンパイル＆実行
+cargo run ファイル名.rs
+
+
+■新規プロジェクトの作成
+cargo new プロジェクト名
+// プロジェクト名
+// 　├src
+// 　│└main.rs // Hello World
+// 　└Cargo.toml　// コンパイルに必要

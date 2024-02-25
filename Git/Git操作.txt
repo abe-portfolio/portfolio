@@ -1,0 +1,61 @@
+【初めてGitへファイルをアップロードする】
+①「< > Code」ボタンからURLを取得する
+
+②Gitの初期化。
+　ローカルのフォルダをGitリポジトリとして初期化する。
+　アップロード対象のディレクトリに移動し、以下のコマンドを実行
+　■git init
+
+③リモートリポジトリの追加
+　作成したGitHubリポジトリをリモートに追加する。
+　■git remote add リモートリポジトリ名 ①で取得したURL
+
+④変更をステージング
+　以下のコマンドを実行し、ローカルの変更をステージングエリアに追加する。
+　■git add .
+
+⑤ステージングエリアに追加された変更をコミット
+　■git commit -m "コミットメッセージ"
+
+⑥変更をリモートにプッシュ
+　■git push -u リモートリポジトリ名 main
+
+=======================================================================================
+
+【各種確認コマンド】
+・ユーザーとメールアドレスの確認
+　■git config user.name
+　　→設定コマンド：git config --global user.name "YourUsername"
+　■git config user.email
+　　→設定コマンド：git config --global user.email "your.email@example.com"
+
+・リモートリポジトリのURLの確認
+　■git remote -v
+
+・全ての設定を一覧表示
+　現在のリポジトリに関する全ての設定を一覧表示
+　■git config --list
+
+・エディタの確認
+　Gitの設定で使用されているエディタを確認する
+　■git config --get core.editor
+
+・差分の確認
+　コマンドラインでのGit操作時に表示される差分やログに色が使われるかどうかを確認
+　■git config --get color.ui
+
+・コミットメッセージのテンプレートの確認
+　コミットメッセージのテンプレートファイルのパスが表示
+　■git config --get commit.template
+
+=======================================================================================
+
+【変更・修正・削除】
+・既存のoriginを削除
+　■git remote remove origin
+
+・新しいリモートリポジトリを追加
+　■git remote add origin https://github.com/abe-portfolio/abe_private.git
+
+・新しいリモートリポジトリで上書き
+　■git remote set-url origin 新しいリモートのURL

@@ -1,0 +1,48 @@
+■Dockerでは、Imageを基にContainerと呼ばれ仮想環境を複製することができる
+要は、ContainerはImageのインスタンスとなる。
+そのため、Imageには状態の保存や変更などはできない。
+
+
+■Dockerfile
+DockerHubなどから誰かが作成したImageを持ってきて自分用にカスタマイズして使いたいときに編集する。
+
+・Dockerfile
+命令１
+命令２
+命令３
+命令４
+命令５
+…
+
+　↓ Build
+
+・Image
+Image
+Layer 1
+Layer 2
+Layer 3
+Layer 4
+…
+
+　↓ Run
+
+・Container
+Image
+Layer 1
+Layer 2
+Layer 3
+Layer 4
+…
+
+
+例）
+Image　　Ubuntu
+Layer 1　install Git
+Layer 2　Create User & Group
+Layer 3　install Rust             | install Python
+Layer 4　cargo install cargo-edit | pip install torch 
+
+
+
+
+■Docker Compose

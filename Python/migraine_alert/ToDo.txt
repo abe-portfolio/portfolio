@@ -1,0 +1,77 @@
+2023/12/30
+対象テーブルの取得まで完了(csv出力にて確認済み）
+
+2023/01/03
+メール送信機能を別モジュールとして実装完了
+分岐①の状態で完成
+
+
+
+■課題
+・現状、常に１日前のデータを取得しているため、最新でデータを取得できるようにする（何時実行の予定
+？）
+・グラフ化
+
+
+
+■分岐
+①シンプルに設置値を設けて下回ったら　メール送信
+　　　　↓いずれ昇華
+②機械学習を行い、頭痛発生と見なされれば　メール送信（別ポートリオで機械学習をしようするため今回は実装しない）
+
+
+
+
+==========================================================
+■メール送信の実装
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+def send_email():
+    # 送信元メールアドレス
+    sender_email = "your_email@gmail.com"
+    # 送信元メールアカウントのパスワードまたはアプリパスワード
+    password = "your_password"
+
+    # 送信先メールアドレス
+    receiver_email = "recipient_email@example.com"
+    # メールの件名
+    subject = "Test Email"
+
+    # メールの本文
+    body = "Hello, this is a test email."
+
+    # MIMETextオブジェクトを作成
+    message = MIMEMultipart()
+    message.attach(MIMEText(body, "plain"))
+
+    # 件名を設定
+    message["Subject"] = subject
+    # 送信元メールアドレスを設定
+    message["From"] = sender_email
+    # 送信先メールアドレスを設定
+    message["To"] = receiver_email
+
+    # SMTPサーバーに接続
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        # 暗号化の開始
+        server.starttls()
+        # ログイン
+        server.login(sender_email, password)
+        # メール送信
+        server.sendmail(sender_email, receiver_email, message.as_string())
+
+# メールを送信
+send_email()
+==========================================================
+
+MigraineAlert407@gmail.com
+Vv7seq02Dds
+アプリケーションパスワード（https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4OyDiyw-hqgYnhjXgmsEOHHwhtGQDRHxyJBRvvGFGtwQHxxj80hDBCNvf_osKqnK1mDmAb3QkVgw4O6XdJJp3nc-jl8xPJ14ym9BP0OaFzm7aVqTbY）
+py_MigraineAlert（app name)
+wxuz pkqs gqky dzua
+
+
+メール送信続き
+https://myaccount.google.com/apppasswords?utm_source=google-account&utm_medium=myaccountsecurity&utm_campaign=tsv-settings&rapt=AEjHL4MoR-UofQFoiV9_wIsGOzWg9pnllLwxIUeUFV6GueL8PZpsWFwttk5Bs5vAIJvRIetwTgCfD_gwb35q712OIaXP_bE_faKDG79g8P-zNpIrUoy1utM
