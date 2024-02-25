@@ -59,3 +59,32 @@
 
 ・新しいリモートリポジトリで上書き
 　■git remote set-url origin 新しいリモートのURL
+
+=======================================================================================
+
+【鍵ペアの作成と内容のコピー】
+・作成
+　■ssh-keygen
+
+・コピー
+　■type %USERPROFILE%\.ssh\id_rsa.pub | clip
+
+=======================================================================================
+
+【２回目以降の作業時の実行コマンド】
+・初回のみ（他端末）
+　■git clone git@github.com:abe-portfolio/portfolio.git
+　　└cloneを行うと、自動的にoriginでリモートリポジトリが作成される
+
+・２回目以降（全端末）
+　■git pull origin main
+
+===作業完了後===
+・ステージング
+　■git add .
+
+・コミット
+　■git commit -m ""
+
+・push
+　■git push origin main
