@@ -55,7 +55,7 @@
 　■git remote remove origin
 
 ・新しいリモートリポジトリを追加
-　■git remote add origin https://github.com/abe-portfolio/abe_private.git
+　■git remote add origin https://github.com/abe-portfolio/portfolio.git
 
 ・新しいリモートリポジトリで上書き
 　■git remote set-url origin 新しいリモートのURL
