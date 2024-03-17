@@ -9,6 +9,7 @@ func main() {
 	var i int = 1
 	var f64 float64 = 1.2
 	var s string = "test"
+
 	var f bool = false
 	var t bool = true
 	// var t, f bool = true, false のように1行で書くこともできる

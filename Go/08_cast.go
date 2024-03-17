@@ -33,5 +33,4 @@ func main() {
 	*/
 	i, _ := strconv.Atoi(s)
 	fmt.Printf("%T %v", i, i)
-
 }

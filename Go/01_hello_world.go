@@ -4,7 +4,8 @@ import (
 	"fmt"
 )
 
-// __init__と同じ。
+// __init__と同じ。標準で搭載されている
+// main packageであれば、main関数よりも"先"に実行される（他パッケージで使う際はimportする）
 func init() {
 	fmt.Println("init")
 }
