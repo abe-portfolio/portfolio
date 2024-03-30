@@ -1,3 +1,9 @@
+use proconio::input;
+
 fn main() {
-    println!("Hello, world!");
+    input! {
+        w: string,
+    }
+
+    println!("{}", w)
 }
