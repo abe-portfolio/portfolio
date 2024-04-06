@@ -6,3 +6,11 @@ fn main() {
         N: i32,
     };
 }
+// n
+// v1 v2 ... vn
+fn input2() {
+    input! {
+        n: i32,
+        v; [i32; n]
+    };
+}
