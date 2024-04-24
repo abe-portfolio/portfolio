@@ -1,0 +1,61 @@
+fn main() {
+    println!("--PrintlnとPrint--");
+    println!("Hello,");
+    println!("world!");
+    print!("not ln；");
+    print!("Hello,");
+    print!("world!");
+    println!("");
+    println!("");
+    
+    println!("--可変長引数--");
+    println!("{}, {}", 10, 20);
+    println!("");
+    println!("--位置指定引数--");
+    println!("{1}, {}, {0}, {}", "A", "B");
+    println!("");
+    
+    println!("--変数の使用--");
+    let people = "i am a Rustaceans";
+    println!("{people}");
+    println!("");
+    
+    println!("--関数の利用--");
+    println!("{}", add(15,1000));
+    println!("");
+    
+    println!("--引数で値を指定--");
+    println!("a:{a} b:{b} c:{c}", a="A", b="C", c="B");
+    println!("");
+    
+    println!("--表示位置のシフト--");
+    println!("Hello {:<5}!", "x");
+    println!("Hello {:-<5}!", "x");
+    println!("Hello {:^5}!", "x");
+    println!("Hello {:-^5}!", "x");
+    println!("Hello {:>5}!", "x");
+    println!("Hello {:->5}!", "x");
+    println!("");
+    
+    println!("--有効数字・有効文字列--");
+    println!("{:.2}", 0.123);
+    println!("{:.5}", 10123);
+    println!("{:.2}", "abcdefg");
+    println!("{:.5}", "abcdefg");
+    println!("--デバッグ出力--");
+    println!("{:?}", 12345);
+    println!("{:?}", "12345");
+    println!("");
+    
+    println!("--dbg!を使用したデバッグ--");
+    let a = 2;
+    let b = dbg!(a * 2) + 1;
+    println!("");
+    
+}
+
+
+// 関数の作成
+fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
