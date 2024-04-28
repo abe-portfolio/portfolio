@@ -2,16 +2,32 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
 import psutil    # OSに関係なくCPUメモリの状態を監視できるモジュール
+import os
 
 
 # --------------ボタン関数 START--------------
+# TEST用
+def test():
+    test_result = get_drives()
+    messagebox.showinfo("TEST Result", test_result)
+
+
 # ボタン：Usage_manual_button　　説明：メッセージボックスで利用マニュアルを表示
 def Show_Usage_Manual():
     messagebox.showinfo("How to use", descroption_string)
 
 # ボタン：parse_button　　説明：OSにあるドライブの一覧を取得
 def Parse_Drive():
-    pass
+    machine_drive_list = get_drives()
+    print(machine_drive_list)
+    
+    if v.get() == "Select Drive":
+        # ドライブがリストから選択されていない場合
+        messagebox.showinfo("Infomation", "Target Drive is empty!")
+    else:
+        # ドライブがリストから選択されている場合
+        print(v.get())
+        # get_drive_info(v.get())
     
 # ボタン：init_button　　説明：ウィンドウの初期化
 def Window_Reset():
@@ -20,6 +36,16 @@ def Window_Reset():
     
     
 # --------------処理関数 START--------------
+# マシンのドライブの一覧を取得
+def get_drives():
+    machine_drives = []
+    for part in psutil.disk_partitions():
+        if part.device and 'cdrom' not in part.opts and 'removable' not in part.opts:
+            drive_letter = os.path.splitdrive(part.mountpoint)[0]
+            drive_letter = drive_letter.rstrip(':')
+            machine_drives.append(drive_letter)
+    return machine_drives
+
 # 引数で渡されたドライブの情報を取得
 def get_drive_info(drive):
     partitions = psutil.disk_partitions(all=True)
@@ -44,6 +70,10 @@ root.title("DISK INFO")
 
 # ウィンドウサイズを変更
 root.geometry("640x480")
+
+# 動作確認用のボタン
+TEST_button = tk.Button(root, text="FOR TEST", command=lambda: test())
+TEST_button.grid()
 
 # アプリケーションの利用マニュアルをボタンを押下するとメッセージボックスで表示する
 descroption_string = "説明"

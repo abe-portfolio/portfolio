@@ -2,14 +2,26 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
 import psutil
+import os
 
 
 # --------------ボタン関数 START--------------
+def test():
+    test_result = get_drives()
+    messagebox.showinfo("TEST Result", test_result)
+    
 def Show_Usage_Manual():
     messagebox.showinfo("How to use", descroption_string)
 
 def Parse_Drive():
-    pass
+    machine_drive_list = get_drives()
+    print(machine_drive_list)
+    
+    if v.get() == "Select Drive":
+        messagebox.showinfo("Infomation", "Target Drive is empty!")
+    else:
+        print(v.get())
+        # get_drive_info(v.get())
     
 def Window_Reset():
     combobox.set("Select Drive")
@@ -17,6 +29,15 @@ def Window_Reset():
     
     
 # --------------処理関数 START--------------
+def get_drives():
+    machine_drives = []
+    for part in psutil.disk_partitions():
+        if part.device and 'cdrom' not in part.opts and 'removable' not in part.opts:
+            drive_letter = os.path.splitdrive(part.mountpoint)[0]
+            drive_letter = drive_letter.rstrip(':')
+            machine_drives.append(drive_letter)
+    return machine_drives
+
 def get_drive_info(drive):
     partitions = psutil.disk_partitions(all=True)
     for partition in partitions:
@@ -37,6 +58,9 @@ root= tk.Tk()
 root.title("DISK INFO")
 
 root.geometry("640x480")
+
+TEST_button = tk.Button(root, text="FOR TEST", command=lambda: test())
+TEST_button.grid()
 
 descroption_string = "説明"
 Usage_manual_button = tk.Button(root, text="Usage Manual", command=lambda: Show_Usage_Manual())
