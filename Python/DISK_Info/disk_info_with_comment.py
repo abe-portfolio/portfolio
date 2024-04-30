@@ -8,8 +8,7 @@ import os
 # --------------ボタン関数 START--------------
 # TEST用
 def test():
-    test_result = get_drives()
-    messagebox.showinfo("TEST Result", test_result)
+    pass
 
 
 # ボタン：Usage_manual_button　　説明：メッセージボックスで利用マニュアルを表示
@@ -19,14 +18,16 @@ def Show_Usage_Manual():
 # ボタン：parse_button　　説明：OSにあるドライブの一覧を取得
 def Parse_Drive():
     machine_drive_list = get_drives()
-    print(machine_drive_list)
     
     if v.get() == "Select Drive":
         # ドライブがリストから選択されていない場合
         messagebox.showinfo("Infomation", "Target Drive is empty!")
+    elif v.get() not in machine_drive_list:
+        # 選択されたドライブがマシンにない場合
+        messagebox.showinfo("Infomation", "This machine does not have the selected drive!")
     else:
         # ドライブがリストから選択されている場合
-        print(v.get())
+        messagebox.showinfo("Infomation", "It's true!")
         # target_drive_info = get_drive_info(v.get())
         # 
     
@@ -66,24 +67,27 @@ def get_drive_info(drive):
 # --------------メインウィンドウ START--------------
 # メインウィンドウの作成
 root= tk.Tk()
+root.configure(bg="#DCDCDC")
 
 # ウィンドウタイトルの設定padx=(5, 10)
-root.title("DISK INFO")
+root.title("DISK INFO(with comment)")
 
 # ウィンドウサイズを変更
 root.geometry("640x480")
 
 # アプリケーションの利用マニュアルをボタンを押下するとメッセージボックスで表示する
+#    bg は、ボタンの背景色を指定
+#    fg は、ボタンの文字色を指定(指定しない場合は。デフォルトの黒のまま)
 descroption_string = "説明"
-Usage_manual_button = tk.Button(root, text="Usage Manual", command=lambda: Show_Usage_Manual())
-Usage_manual_button.grid(row=0, pady=10)
+Usage_manual_button = tk.Button(root, text="Usage Manual", command=lambda: Show_Usage_Manual(), bg="#AFEEEE", width=15)
+Usage_manual_button.grid(row=0, padx=20, pady=(20,40), sticky="w")
 
 # vはドロップダウンメニューの値を保持するための変数
 v = tk.StringVar()
 drive_list = ("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "L", "S", "T", "U", "V", "W", "X", "Y", "Z")
 combobox = ttk.Combobox(root, textvariable= v, values=drive_list, state="readonly")
 combobox.set("Select Drive")
-combobox.grid(row=1, padx=10)
+combobox.grid(row=1, padx=20, sticky="w")
 
 # tk.Frame = フレーム（グループ化するための親要素）を作成
 # Frame.grid()メソッドの設定値で要素を横並びにできる（デフォルトは縦並び）
@@ -93,36 +97,44 @@ combobox.grid(row=1, padx=10)
 #     -> padx = x方向に指定した数値px分のpaddingを付与
 #     -> pady = y方向に指定した数値px分のpaddingを付与
 # ※row=0, column=nで、同じ行内にn個の要素を横並びにできる
-button_frame = tk.Frame(root)    
-button_frame.grid(row=2, column=0, columnspan=2, pady=10)
+button_frame = tk.Frame(root, bg="#DCDCDC")    
+button_frame.grid(row=2, column=0, columnspan=2, padx=10, pady=10, sticky="w")
 
 # parse_buttonをbutton_frameに配置
-parse_button = tk.Button(button_frame, text="parse", command=lambda: Parse_Drive())
+parse_button = tk.Button(button_frame, text="parse", command=lambda: Parse_Drive(), bg="#AFEEEE", width=15)
 parse_button.grid(row=0, column=0, padx=10)
 
 # init_buttonをbutton_frameに配置
-init_button = tk.Button(button_frame, text="init", command=lambda: Window_Reset())
+init_button = tk.Button(button_frame, text="init", command=lambda: Window_Reset(), bg="#C0C0C0", width=15)
 init_button.grid(row=0, column=1, padx=10)
 
 
+# 区切り枠線
+#    borderwidth は bd とも記載が可能（略式系なので、同じ属性を指す）
+#    relief は枠線の種類
+#    highlightbackground は枠線の色を変更
+partition_frame = tk.Frame(root, borderwidth=2, relief="solid", highlightbackground="red", bg="#E6E6FA")
+partition_frame.grid(row=3, column=0, columnspan=2, sticky="nsew", padx=20, pady=20)    # sticky="nsew" は一周
+
+
 # ドライブの情報を表示するためのLabelとTextをグループ化するためのフレーム
-drive_info_frame1 = tk.Frame(root)
-drive_info_frame1.grid(row=3, column=0, columnspan=2, pady=5)
+drive_info_frame1 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame1.grid(row=0, column=0, columnspan=2, pady=5)
 
-drive_info_frame2 = tk.Frame(root)
-drive_info_frame2.grid(row=4, column=0, columnspan=2, pady=5)
+drive_info_frame2 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame2.grid(row=1, column=0, columnspan=2, pady=5)
 
-drive_info_frame3 = tk.Frame(root)
-drive_info_frame3.grid(row=5, column=0, columnspan=2, pady=5)
+drive_info_frame3 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame3.grid(row=2, column=0, columnspan=2, pady=5)
 
-drive_info_frame4 = tk.Frame(root)
-drive_info_frame4.grid(row=6, column=0, columnspan=2, pady=5)
+drive_info_frame4 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame4.grid(row=3, column=0, columnspan=2, pady=5)
 
-drive_info_frame5 = tk.Frame(root)
-drive_info_frame5.grid(row=7, column=0, columnspan=2, pady=5)
+drive_info_frame5 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame5.grid(row=4, column=0, columnspan=2, pady=5)
 
-drive_info_frame6 = tk.Frame(root)
-drive_info_frame6.grid(row=8, column=0, columnspan=2, pady=5)
+drive_info_frame6 = tk.Frame(partition_frame, bg="#E6E6FA")
+drive_info_frame6.grid(row=5, column=0, columnspan=2, pady=5)
 
 
 # tk.Label = ラベル（ウィンドウに表示する文字列）を作成
@@ -147,61 +159,61 @@ drive_info_frame6.grid(row=8, column=0, columnspan=2, pady=5)
 
 # ----- Frame1 ------
 # ドライブの表示
-label_drive = tk.Label(drive_info_frame1, text="・Drive Name :", anchor=tk.W, width=20)
-label_drive.grid(row=0, column=0, padx=(20, 0))
+label_drive = tk.Label(drive_info_frame1, text="・Drive Name :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_drive.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box1 = tk.Text(drive_info_frame1, height=1, width=5)
+text_box1 = tk.Text(drive_info_frame1, height=1, width=20)
 text_box1.config(state=tk.DISABLED)
 text_box1.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
 # ----- Frame2 ------
 # マウントポイントの表示
-label_mountpoint = tk.Label(drive_info_frame2, text="・Mount Point :", anchor=tk.W, width=20)
-label_mountpoint.grid(row=0, column=0, padx=(20, 0))
+label_mountpoint = tk.Label(drive_info_frame2, text="・Mount Point :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_mountpoint.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box2 = tk.Text(drive_info_frame2, height=1, width=5)
+text_box2 = tk.Text(drive_info_frame2, height=1, width=20)
 text_box2.config(state=tk.DISABLED)
 text_box2.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
 # ----- Frame3 ------
 # 総容量の表示
-label_total_space = tk.Label(drive_info_frame3, text="・Total Space :", anchor=tk.W, width=20)
-label_total_space.grid(row=0, column=0, padx=(20, 0))
+label_total_space = tk.Label(drive_info_frame3, text="・Total Space :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_total_space.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box3 = tk.Text(drive_info_frame3, height=1, width=5)
+text_box3 = tk.Text(drive_info_frame3, height=1, width=20)
 text_box3.config(state=tk.DISABLED)
 text_box3.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
 # ----- Frame4 ------
 # 使用済み容量の表示
-label_used_space = tk.Label(drive_info_frame4, text="・Used Space :", anchor=tk.W, width=20)
-label_used_space.grid(row=0, column=0, padx=(20, 0))
+label_used_space = tk.Label(drive_info_frame4, text="・Used Space :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_used_space.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box4 = tk.Text(drive_info_frame4, height=1, width=5)
+text_box4 = tk.Text(drive_info_frame4, height=1, width=20)
 text_box4.config(state=tk.DISABLED)
 text_box4.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
 # ----- Frame5 ------
 # 空き容量の表示
-label_free_space = tk.Label(drive_info_frame5, text="・Free Space :", anchor=tk.W, width=20)
-label_free_space.grid(row=0, column=0, padx=(20, 0))
+label_free_space = tk.Label(drive_info_frame5, text="・Free Space :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_free_space.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box5 = tk.Text(drive_info_frame5, height=1, width=5)
+text_box5 = tk.Text(drive_info_frame5, height=1, width=20)
 text_box5.config(state=tk.DISABLED)
 text_box5.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
 # ----- Frame6 ------
 # 使用率(%)の表示
-label_percentage_used = tk.Label(drive_info_frame6, text="・Usage Percentage :", anchor=tk.W, width=20)
-label_percentage_used.grid(row=0, column=0, padx=(20, 0))
+label_percentage_used = tk.Label(drive_info_frame6, text="・Usage Percentage :", anchor=tk.W, width=20, bg="#E6E6FA")
+label_percentage_used.grid(row=0, column=0)
 
 # 取得したディスク情報を表示するテキストボックスの作成
-text_box6 = tk.Text(drive_info_frame6, height=1, width=5)
+text_box6 = tk.Text(drive_info_frame6, height=1, width=20)
 text_box6.config(state=tk.DISABLED)
 text_box6.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
@@ -215,3 +227,9 @@ TEST_button.grid(pady=(80,0))
 #rootを表示し無限ループ
 root.mainloop()
 # --------------メインウィンドウ END--------------
+
+
+
+
+# グラフの追加
+# レイアウトももっとこう、いい感じに
