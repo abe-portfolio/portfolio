@@ -3,14 +3,10 @@ import tkinter.ttk as ttk
 from tkinter import messagebox
 import psutil    # OSに関係なくCPUメモリの状態を監視できるモジュール
 import os
+# import matplotlib.pyplot as plt
 
 
-# --------------ボタン関数 START--------------
-# TEST用
-def test():
-    pass
-
-
+# --------------Button Function START--------------
 # ボタン：Usage_manual_button　　説明：メッセージボックスで利用マニュアルを表示
 def Show_Usage_Manual():
     messagebox.showinfo("How to use", descroption_string)
@@ -21,23 +17,30 @@ def Parse_Drive():
     
     if v.get() == "Select Drive":
         # ドライブがリストから選択されていない場合
-        messagebox.showinfo("Infomation", "Target Drive is empty!")
+        messagebox.showinfo("Infomation", "Please select the target drive.")
     elif v.get() not in machine_drive_list:
         # 選択されたドライブがマシンにない場合
-        messagebox.showinfo("Infomation", "This machine does not have the selected drive!")
+        messagebox.showinfo("Infomation", "This machine does not have the selected drive.")
     else:
         # ドライブがリストから選択されている場合
-        messagebox.showinfo("Infomation", "It's true!")
-        # target_drive_info = get_drive_info(v.get())
-        # 
+        get_drive_info(v.get())
+        
     
 # ボタン：init_button　　説明：ウィンドウの初期化
 def Window_Reset():
     combobox.set("Select Drive")
-# --------------ボタン関数 END--------------
+    textbox_enable()
+    text_box1.delete(1.0, tk.END)
+    text_box2.delete(1.0, tk.END)
+    text_box3.delete(1.0, tk.END)
+    text_box4.delete(1.0, tk.END)
+    text_box5.delete(1.0, tk.END)
+    text_box6.delete(1.0, tk.END)
+    textbox_disable()
+# --------------Button Function END--------------
     
     
-# --------------処理関数 START--------------
+# --------------Processing Function START-------------
 # マシンのドライブの一覧を取得
 def get_drives():
     machine_drives = []
@@ -49,36 +52,63 @@ def get_drives():
             machine_drives.append(drive_letter)
     return machine_drives
 
+# テキストボックスを編集可能にする
+def textbox_enable():
+    text_box1.configure(state=tk.NORMAL)
+    text_box2.configure(state=tk.NORMAL)
+    text_box3.configure(state=tk.NORMAL)
+    text_box4.configure(state=tk.NORMAL)
+    text_box5.configure(state=tk.NORMAL)
+    text_box6.configure(state=tk.NORMAL)
+
+# テキストボックスを編集不可能（読み取り専用）にする
+def textbox_disable():
+    text_box1.configure(state=tk.DISABLED)
+    text_box2.configure(state=tk.DISABLED)
+    text_box3.configure(state=tk.DISABLED)
+    text_box4.configure(state=tk.DISABLED)
+    text_box5.configure(state=tk.DISABLED)
+    text_box6.configure(state=tk.DISABLED)
+
 # 引数で渡されたドライブの情報を取得
 def get_drive_info(drive):
+    textbox_enable()
     partitions = psutil.disk_partitions(all=True)
     for partition in partitions:
-        if partition.device == drive:
+        if partition.device[0] == drive:
             usage = psutil.disk_usage(partition.mountpoint)
-            print(f"Drive: {partition.device}")
-            print(f"Mountpoint: {partition.mountpoint}")
-            print(f"Total space: {usage.total / (2**30):.2f} GB")
-            print(f"Used space: {usage.used / (2**30):.2f} GB")
-            print(f"Free space: {usage.free / (2**30):.2f} GB")
-            print(f"Percentage used: {usage.percent}%")
-# --------------処理関数 END--------------
+            text_box1.insert(tk.END, f"{partition.device}")
+            text_box2.insert(tk.END, f"{partition.mountpoint}")
+            text_box3.insert(tk.END, f"{usage.total / (2**30):.2f} GB")
+            text_box4.insert(tk.END, f"{usage.used / (2**30):.2f} GB")
+            text_box5.insert(tk.END, f"{usage.free / (2**30):.2f} GB")
+            text_box6.insert(tk.END, f"{usage.percent} %")
+    
+    # plt.barh(x, y)
+    # plt.show()
+    textbox_disable()
+# --------------Processing Function END--------------
 
 
-# --------------メインウィンドウ START--------------
+# --------------Main Window START--------------
 # メインウィンドウの作成
 root= tk.Tk()
 root.configure(bg="#DCDCDC")
 
 # ウィンドウタイトルの設定padx=(5, 10)
 root.title("DISK INFO(with comment)")
-
 # ウィンドウサイズを変更
 root.geometry("640x480")
 
 # アプリケーションの利用マニュアルをボタンを押下するとメッセージボックスで表示する
 #    bg は、ボタンの背景色を指定
 #    fg は、ボタンの文字色を指定(指定しない場合は。デフォルトの黒のまま)
-descroption_string = "説明"
+# \で文字列を改行すると表示上は1行の文字列として表示される（コード上でのみ改行し可読性を上げる）
+descroption_string = "DISK INFO is a tool to display disk information on the computer. " \
+                    "When you run the program, select the target drive from the dropdown menu " \
+                    "and click the parse button. Then, the information of the selected drive " \
+                    "will be displayed in the text boxes. Once the display is complete, " \
+                    "you can click the init button to reset the text boxes."
 Usage_manual_button = tk.Button(root, text="Usage Manual", command=lambda: Show_Usage_Manual(), bg="#AFEEEE", width=15)
 Usage_manual_button.grid(row=0, padx=20, pady=(20,40), sticky="w")
 
@@ -114,7 +144,7 @@ init_button.grid(row=0, column=1, padx=10)
 #    relief は枠線の種類
 #    highlightbackground は枠線の色を変更
 partition_frame = tk.Frame(root, borderwidth=2, relief="solid", highlightbackground="red", bg="#E6E6FA")
-partition_frame.grid(row=3, column=0, columnspan=2, sticky="nsew", padx=20, pady=20)    # sticky="nsew" は一周
+partition_frame.grid(row=3, column=0, columnspan=2, sticky="nsew", padx=20, pady=20)
 
 
 # ドライブの情報を表示するためのLabelとTextをグループ化するためのフレーム
@@ -161,7 +191,6 @@ drive_info_frame6.grid(row=5, column=0, columnspan=2, pady=5)
 # ドライブの表示
 label_drive = tk.Label(drive_info_frame1, text="・Drive Name :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_drive.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box1 = tk.Text(drive_info_frame1, height=1, width=20)
 text_box1.config(state=tk.DISABLED)
@@ -171,7 +200,6 @@ text_box1.grid(row=0, column=1, padx=(0, 5), sticky="w")
 # マウントポイントの表示
 label_mountpoint = tk.Label(drive_info_frame2, text="・Mount Point :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_mountpoint.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box2 = tk.Text(drive_info_frame2, height=1, width=20)
 text_box2.config(state=tk.DISABLED)
@@ -181,7 +209,6 @@ text_box2.grid(row=0, column=1, padx=(0, 5), sticky="w")
 # 総容量の表示
 label_total_space = tk.Label(drive_info_frame3, text="・Total Space :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_total_space.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box3 = tk.Text(drive_info_frame3, height=1, width=20)
 text_box3.config(state=tk.DISABLED)
@@ -191,7 +218,6 @@ text_box3.grid(row=0, column=1, padx=(0, 5), sticky="w")
 # 使用済み容量の表示
 label_used_space = tk.Label(drive_info_frame4, text="・Used Space :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_used_space.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box4 = tk.Text(drive_info_frame4, height=1, width=20)
 text_box4.config(state=tk.DISABLED)
@@ -201,7 +227,6 @@ text_box4.grid(row=0, column=1, padx=(0, 5), sticky="w")
 # 空き容量の表示
 label_free_space = tk.Label(drive_info_frame5, text="・Free Space :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_free_space.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box5 = tk.Text(drive_info_frame5, height=1, width=20)
 text_box5.config(state=tk.DISABLED)
@@ -211,22 +236,14 @@ text_box5.grid(row=0, column=1, padx=(0, 5), sticky="w")
 # 使用率(%)の表示
 label_percentage_used = tk.Label(drive_info_frame6, text="・Usage Percentage :", anchor=tk.W, width=20, bg="#E6E6FA")
 label_percentage_used.grid(row=0, column=0)
-
 # 取得したディスク情報を表示するテキストボックスの作成
 text_box6 = tk.Text(drive_info_frame6, height=1, width=20)
 text_box6.config(state=tk.DISABLED)
 text_box6.grid(row=0, column=1, padx=(0, 5), sticky="w")
 
-
-# *************************************** 動作確認用！！
-# 動作確認用のボタン
-TEST_button = tk.Button(root, text="FOR TEST", command=lambda: test())
-TEST_button.grid(pady=(80,0))
-# *************************************** 動作確認用！！
-
 #rootを表示し無限ループ
 root.mainloop()
-# --------------メインウィンドウ END--------------
+# --------------Main Window END--------------
 
 
 
