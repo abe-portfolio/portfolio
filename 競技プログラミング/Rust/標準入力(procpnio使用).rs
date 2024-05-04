@@ -12,6 +12,7 @@ fn main() {
 fn input2() {
     input! {
         n: i32,
+        // n: usize,  usizeは符号なし整数　※絶対値をとるわけではないので、-2などを渡すとコンパイルエラーになる
         v; [i32; n]
     };
 }
@@ -22,5 +23,12 @@ fn input3() {
     input! {
         n: usize,
         v: [i32; n],
+    };
+}
+
+// 文字列の標準入力
+fn input4() {
+    input! {
+        S: String,
     };
 }
