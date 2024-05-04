@@ -1,7 +1,10 @@
 Udemy講座にて作成
 
+Note:
 go version go1.21.6 windows/amd64
 
+Desktop:
+go version go1.21.6 windows/amd64
 
 -------------------------------------------------
 memo
