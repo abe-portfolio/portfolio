@@ -49,13 +49,14 @@ func generateQRCode(input, path, filename string) error {
 
 	qrFilepath := filepath.Join(path, filename)
 
-	// QRコードを画像として保存
+	// １．os.Create()methodで、QRコードを出力する用のファイルを作成しておく
 	file, err := os.Create(qrFilepath)
 	if err != nil {
 		return err
 	}
 	defer file.Close()
 
+	// ２．qr.Write()methodで、１で作成したファイルに「画像として」256px四方のQRコードを出力する
 	err = qr.Write(256, file)
 	if err != nil {
 		return err
