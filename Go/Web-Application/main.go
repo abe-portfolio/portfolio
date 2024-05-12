@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -63,21 +63,55 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
+func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
+	t, _ := template.ParseFiles(tmpl + ".html")
+	t.Execute(w, p)
+}
+
 // http.ResponseWriter
 // 　　-> HTTPレスポンスを書き込むためのインターフェースで、サーバーがクライアントに返すHTTPレスポンスを構築するために使用。
 // *http.Request
 // 　　-> HTTPリクエストに関する情報を保持する構造体へのポインタで、クライアントからのHTTPリクエストに関する情報を取得するために使用。
-
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	// 例として、「/view/test」とアクセスした場合、len[("/view/"):] で「/view/」以降の文字列を取得する
 	title := r.URL.Path[len("/view/"):]
-	p, _ := loadPage(title)
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
+	p, err := loadPage(title)
+	if err != nil {
+		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		return
+	}
+
+	// fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
+	// 挿入するhtmlが長くなる場合はテンプレートファイルを使って挿入する
+	renderTemplate(w, "view", p)
+}
+
+func editHandler(w http.ResponseWriter, r *http.Request) {
+	title := r.URL.Path[len("/edit/"):]
+	p, err := loadPage(title)
+	if err != nil {
+		p = &Page{Title: title}
+	}
+	renderTemplate(w, "edit", p)
+}
+
+// ※※※ここでのハンドラがおかしく、404 Not Foundになるみたい
+func saveHandler(w http.ResponseWriter, r *http.Request) {
+	title := r.URL.Path[len("/save/"):]
+	// htmlファイルのformタグのbame属性がbodyの値を取得する（edit.htmlからsubmitされる）
+	body := r.FormValue("body")
+	p := &Page{Title: title, Body: []byte(body)}
+	err := p.save()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
 func main() {
 	/*
-		p1 := &Page{Title: "test", Body: []byte("This is a sample page")}
+		p1 := &Page{Title: "test", Body: []byte("This is a sample page.")}
 		p1.save()
 
 		p2, _ := loadPage(p1.Title)
@@ -87,6 +121,8 @@ func main() {
 	// ※特定のURLにアクセスが来た時、自作したハンドラーを当てたい場合は、http.ListenAndServe()の"実行前"に..HandleFunc()を定義する
 	// 「/view/」というアクセスが来た場合はviewHandlerを実行する
 	http.HandleFunc("/view/", viewHandler)
+	http.HandleFunc("/edit/", editHandler)
+	http.HandleFunc("/save/", saveHandler)
 
 	// サーバーを立ち上げる。第一引数を省略するとlocalhostで立ち上がる
 	// 第二引数はハンドラーを設定できる（nilの場合はデフォルトのもの(=404 page not found)が採用される）

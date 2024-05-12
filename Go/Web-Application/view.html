@@ -1,0 +1,9 @@
+<h1>{{.Title}}</h1>
+
+<p>[<a href="/edit/{{.Title}}">Edit</a>]</p>
+<!-- 
+    {{printf "%s" .Body}} の書き方について
+        ・printfの後の()は付けない
+        ・,区切りしない（,で区切るとhttpパッケージのメソッドが読み込めず、panicを起こして接続できなくなる）
+-->
+<div>{{printf "%s" .Body}}</div>
