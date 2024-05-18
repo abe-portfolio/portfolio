@@ -5,57 +5,47 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 )
 
-// struct -> 構造体。Pythonでいうところのクラスオブジェクトのようなもの
 type Page struct {
 	Title string
 	Body  []byte
 }
 
-// 構造体：Page に対してsaveメソッドを作成（返り値はerror）
 func (p *Page) save() error {
-	// ファイル名を設定
 	filename := p.Title + ".txt"
 
-	// ファイルを作成または開く
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
 	}
 	defer file.Close()
 
-	// ファイルにデータを書き込む
 	_, err = file.Write(p.Body)
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
 func loadPage(title string) (*Page, error) {
 	filename := title + ".txt"
 
-	// 引数のファイル名のファイルを開く。開けない場合はerrにエラーを返す
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
 	defer file.Close()
 
-	// file（開いたファイル）に関連する情報を取得する。今回は.Size()でサイズを取得している
 	stat, err := file.Stat()
 	if err != nil {
 		return nil, err
 	}
-	size := stat.Size()
 
-	// sizeに格納された容量を基にmake()でバッファを作成しておく
+	size := stat.Size()
 	body := make([]byte, size)
 
-	// 	.Read()はバイト数とエラーを返すが、今回はバイト数の情報は不必要
-	// file.Read(body)を実行した段階で、bodyにはfileの中身が格納されているが、.Read()自体はバイト数とエラーを返すため、「_, err」で初期化を行っている
 	_, err = file.Read(body)
 	if err != nil {
 		return nil, err
@@ -63,31 +53,25 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
+var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-	t, _ := template.ParseFiles(tmpl + ".html")
-	t.Execute(w, p)
+	err := templates.ExecuteTemplate(w, tmpl+"html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
-// http.ResponseWriter
-// 　　-> HTTPレスポンスを書き込むためのインターフェースで、サーバーがクライアントに返すHTTPレスポンスを構築するために使用。
-// *http.Request
-// 　　-> HTTPリクエストに関する情報を保持する構造体へのポインタで、クライアントからのHTTPリクエストに関する情報を取得するために使用。
-func viewHandler(w http.ResponseWriter, r *http.Request) {
-	// 例として、「/view/test」とアクセスした場合、len[("/view/"):] で「/view/」以降の文字列を取得する
-	title := r.URL.Path[len("/view/"):]
+func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p, err := loadPage(title)
 	if err != nil {
 		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
 		return
 	}
-
-	// fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
-	// 挿入するhtmlが長くなる場合はテンプレートファイルを使って挿入する
 	renderTemplate(w, "view", p)
 }
 
-func editHandler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[len("/edit/"):]
+func editHandler(w http.ResponseWriter, r *http.Request, title string) {
 	p, err := loadPage(title)
 	if err != nil {
 		p = &Page{Title: title}
@@ -95,10 +79,7 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "edit", p)
 }
 
-// ※※※ここでのハンドラがおかしく、404 Not Foundになるみたい
-func saveHandler(w http.ResponseWriter, r *http.Request) {
-	title := r.URL.Path[len("/save/"):]
-	// htmlファイルのformタグのbame属性がbodyの値を取得する（edit.htmlからsubmitされる）
+func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 	body := r.FormValue("body")
 	p := &Page{Title: title, Body: []byte(body)}
 	err := p.save()
@@ -109,31 +90,23 @@ func saveHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/view/"+title, http.StatusFound)
 }
 
+var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
+
+func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		m := validPath.FindStringSubmatch(r.URL.Path)
+		if m == nil {
+			http.NotFound(w, r)
+			return
+		}
+		fn(w, r, m[2])
+	}
+}
+
 func main() {
-	/*
-		p1 := &Page{Title: "test", Body: []byte("This is a sample page.")}
-		p1.save()
+	http.HandleFunc("/view/", makeHandler(viewHandler))
+	http.HandleFunc("/edit/", makeHandler(editHandler))
+	http.HandleFunc("/save/", makeHandler(saveHandler))
 
-		p2, _ := loadPage(p1.Title)
-		fmt.Println(string(p2.Body))
-	*/
-
-	// ※特定のURLにアクセスが来た時、自作したハンドラーを当てたい場合は、http.ListenAndServe()の"実行前"に..HandleFunc()を定義する
-	// 「/view/」というアクセスが来た場合はviewHandlerを実行する
-	http.HandleFunc("/view/", viewHandler)
-	http.HandleFunc("/edit/", editHandler)
-	http.HandleFunc("/save/", saveHandler)
-
-	// サーバーを立ち上げる。第一引数を省略するとlocalhostで立ち上がる
-	// 第二引数はハンドラーを設定できる（nilの場合はデフォルトのもの(=404 page not found)が採用される）
 	log.Fatal(http.ListenAndServe(":8080", nil))
-
-	/*
-		ブラウザで「localhost:8080」にアクセスした場合
-			404 page not found
-
-		ブラウザで、「localhost:8080/view/test」にアクセスした場合
-			test
-			This is a sample page.
-	*/
 }
