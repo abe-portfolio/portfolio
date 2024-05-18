@@ -32,3 +32,21 @@ fn input4() {
         S: String,
     };
 }
+
+// n
+// a1 b1
+// a2 b2
+// ...
+// an bn
+fn input5() {
+    input! {
+        n: i32,
+    };
+
+    for _ in 0..n {
+        input! {
+            a: String,
+            b: i32,
+        };
+    }
+}
