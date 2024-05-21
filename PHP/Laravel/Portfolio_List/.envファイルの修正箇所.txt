@@ -1,0 +1,8 @@
+◆プロジェクトセットアップ後
+
+
+◆DBセットアップ後
+　　DB_CONNECTION=
+　　DB_DATABASE=
+
+◆

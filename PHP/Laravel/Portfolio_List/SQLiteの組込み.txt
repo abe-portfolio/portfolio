@@ -1,0 +1,23 @@
+SQLiteは多くのシステムでデフォルトで組み込まれている
+
+
+①SQLiteデータベースファイルの作成（※プロジェクトのルートディレクトリ）
+
+　　コマンド：cd <プロジェクトのルートディレクトリ>/database
+　　コマンド：type NUL > database.sqlite
+
+
+
+②.envファイルの設定
+　　設定箇所
+　　　DB_CONNECTION=sqlite
+　　　DB_DATABASE=<プロジェクトのルートディレクトリまでの絶対パス>/database/database.sqlite
+
+
+③マイグレーションの実行
+
+　　コメンド：php artisan migrate
+
+
+
+	
