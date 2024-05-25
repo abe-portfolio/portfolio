@@ -1,9 +1,18 @@
 use proconio::input;
 
+// n
 fn main() {
     input! {
-        // 変数名: 型 i32など
-        N: i32,
+        n: i32,
+    };
+}
+
+
+// a b
+fn main() {
+    input! {
+        a: i32,
+        b: i32,
     };
 }
 
