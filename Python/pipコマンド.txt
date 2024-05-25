@@ -1,0 +1,30 @@
+◆インストールしているモジュールの確認
+pip list
+
+◆pip自体のアップデート
+pip install -U pip
+
+◆パッケージのアップデート
+pip install -U <package-name>
+
+◆アップデートが必要なパッケージの表示
+pip list -o
+
+◆アップデートが不必要なパッケージ（最新状態）の表示
+pip list -u
+
+◆依存関係の確認
+pip check
+※問題が無ければ「No broken requirements found.」と表示される
+
+◆requirements.txtに出力
+pip freeze > requirements.txt
+
+◆requirements.txtを使用してインストール
+pip install -r requirements.txt
+
+◆パッケージのアンインストール
+pip uninstall <package-name>
+
+◆パッケージ個別に詳細情報を表示（インストール場所など）
+pip show <package-name>
