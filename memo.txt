@@ -1,0 +1,36 @@
+◆Goにおける&とRustにおける&の違い
+
+Go…参照（参照先の値にアクセス）
+Rust…所有権の借用（値へのpointerとlenとfree()責任を押し付ける）
+
+例（Go）
+package main
+
+import "fmt"
+
+func main() {
+	var a int = 10
+	var b *int = &a
+	fmt.Println(a)  // 10を出力
+	fmt.Println(*b) // 10を出力（bが参照しているaの値）
+
+	// 値を変更する場合
+	// b = b + 5 のような変更はできない
+	// デリファレンス演算子を使用して参照外しをすることで参照している側から参照元の値を変更することが可能
+	*b = *b +5
+	fmt.Println(a)  // 15を出力
+	fmt.Println(*b) // 15を出力（bが参照しているaの値）
+}
+
+
+例（Rust）
+fn main() {
+	let a: i32 = 10;
+	let b: &i32 = &a;
+	// println!("{a}");  所有権はbが借用しているのでaについて操作することはできない
+	println!("{b}"); // 10を出力（bが参照しているaの値）
+	println!("{a}"); // 10を出力
+
+	// 値を変更する場合
+	// そもそも借用なので持ち主でない限り変更不可能
+}

@@ -1,0 +1,28 @@
+◆概要
+2004年現在の環境構築手順は2021年から変わっていない。
+
+Cargoはパッケージマネージャー兼ビルドシステムになっている。
+
+
+◆手順
+１．Rustは「rustup」を使用してインストールする。（aptやHomeblewは使用しない）
+　-> https://www.rust-lang.org/ja/tools/install
+
+
+２．VScodeのインストール
+　-> https://code.visualstudio.com/download
+
+
+３．VScodeへ拡張機能の追加
+　-> rust-analyzer
+　-> Japanese Language Pack for Visual Studio Code
+
+
+４．setting.jsonに「"rust-analyzer.check.command": "clippy"」を追記する。
+　-> setting.jsonは、
+　　　　Windowsであれば、「Ctrl + ,」で設定を開き、右上のアイコンをクリックすることでGUIの設定からjsonでの設定に切り替える
+       MacOS　 であれば、「Cmd + ,」で　　同上
+　-> clippyはコードチェッカーみたいなもの。
+
+
+
