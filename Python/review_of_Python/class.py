@@ -43,8 +43,15 @@ test_3 = method_review.greeting2() # 出力：World
 # -------------------------------------------------------------------------------------
 
 # 継承
-class inheritance:
-    def __init__(self):
-        pass
+class Parent:
+    def say_hello(self):
+        print("Hello!")
 
-    
+class Child(Parent):
+    def say_world(sekf):
+        print("World!")
+
+greet = Child()
+greet.say_hello() # 出力：Hello!   ※親要素のメソッドも使用可能
+greet.say_world() # 出力：World!
+
