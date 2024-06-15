@@ -28,7 +28,7 @@ use proconio::input;
 fn input2() {
     input! {
         n: i32,
-        v; [i32; n]
+        v: [i32; n],
     };
 }
 

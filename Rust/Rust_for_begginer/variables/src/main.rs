@@ -167,19 +167,27 @@ fn main() {
         println!("The value of element is {}", element);
     }
     println!("---------- 0..5 ----------");
-    for elem in 0..5 {
+    for elm in 0..5 {
         // 0 <= elem < 5
-        println!("The value of elem is {}", elem);
+        println!("The value of elem is {}", elm);
     }
     println!("---------- (0..5).rev() ----------");
-    for elem in (0..5).rev() {
+    for elm in (0..5).rev() {
         // 5 > elem >= 0
-        println!("The value of elem is {}", elem);
+        println!("The value of elem is {}", elm);
     }
 
     println!("--------------------------------------------------------------------------");
-    // ここから
+    
+    // 所有権
+    let mut s: String = String::from("Hello");
+    s.push_str(", World!");
+    println!("{s}");
 
+    let s1: String = String::from("Hello");
+    let s2: String = s1.clone();
+    println!("The value of s1 is {}", s1);
+    println!("The value of s2 is {}", s2);
 }
 
 fn another_function() {

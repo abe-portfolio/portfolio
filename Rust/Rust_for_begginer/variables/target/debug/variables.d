@@ -1,1 +1,1 @@
-C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\Rust\Rust_for_begginer\variables\target\debug\variables.exe: C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\Rust\Rust_for_begginer\variables\src\main.rs
+C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\rust\Rust_for_begginer\variables\target\debug\variables.exe: C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\rust\Rust_for_begginer\variables\src\main.rs
