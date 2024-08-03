@@ -1,0 +1,22 @@
+> php --version 
+PHP 7.4.30 (cli) (built: Jun  7 2022 16:24:55) ( ZTS Visual C++ 2017 x64 )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+
+
+> composer --version 
+Composer version 2.5.1 2022-12-22 15:33:54
+
+
+>php artisan --version
+Laravel Framework 8.83.27
+
+
+>sqlite3 --version
+3.45.3 2024-04-15 13:34:05 8653b758870e6ef0c98d46b3ace27849054af85da891eb121e9aaa537f1e8355 (64-bit)
+
+----------------------------------------------------------------------
+
+制約
+　・XAMPPは使用しない（過去に使用したことがあるため別の方法で実装する）
+　・DBはSQLiteを使用する

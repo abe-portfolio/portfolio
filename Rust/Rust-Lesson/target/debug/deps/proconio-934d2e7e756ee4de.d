@@ -1,0 +1,10 @@
+C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\Rust\Rust-Lesson\target\debug\deps\libproconio-934d2e7e756ee4de.rmeta: C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\lib.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\marker.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\mod.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\line.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\once.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\tokens.rs
+
+C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio\Rust\Rust-Lesson\target\debug\deps\proconio-934d2e7e756ee4de.d: C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\lib.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\marker.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\mod.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\line.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\once.rs C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\tokens.rs
+
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\lib.rs:
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\marker.rs:
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\mod.rs:
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\line.rs:
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\once.rs:
+C:\Users\xhskw\.cargo\registry\src\index.crates.io-6f17d22bba15001f\proconio-0.4.5\src\source\tokens.rs:

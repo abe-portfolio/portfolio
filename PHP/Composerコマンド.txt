@@ -1,0 +1,42 @@
+◆プロジェクト作成
+composer create-project laravel/laravel --prefer-dist [プロジェクト名] [バージョン]
+
+◆laravel/ui　導入
+composer requre laravel/ui
+php artisan ui bootstrap --auth
+npm aistall
+num run dev
+
+◆モデル作成
+php artisan make:model モデル名
+
+◆コントローラー作成
+php artisan make:controller コントローラー
+
+◆シーダーの作成
+php artisan make:seeder シーダー名
+
+◆シーディング実行
+php artisan db:seed
+
+◆ルーティング一覧を確認
+php artisan route:list
+
+◆マイグレーションファイルの作成
+php artisan make:migration マイグレーション名
+
+◆マイグレーション実行
+php artisan migrate
+
+◆マイグレーショ再実行実行
+php artisan migrate:refresh
+
+◆キャッシュ削除
+php artisan cache:clear
+　└キャッシュをすべて削除
+php artisan config:cache
+　└configディレクトリ内の設定ファイルのキャッシュを生成。
+　└アプリケーションの設定を変更した場合は、このコマンドを実行してキャッシュを更新する
+php artisan route:cache
+　└ルートのキャッシュを生成します
+

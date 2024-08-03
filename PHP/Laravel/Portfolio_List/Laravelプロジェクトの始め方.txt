@@ -1,0 +1,21 @@
+①以下のコマンドを実行してLaravelプロジェクトを作成する。
+　Laravelは、プロジェクト作成時に自動的にプロジェクト名のフォルダを作成してくれる。
+　　→実行場所が大事
+
+　　コマンド：composer create-project --prefer-dist laravel/laravel <project-name>
+
+
+
+②作成されたプロジェクトのフォルダに移動し、サーバーを起動する。
+
+　　コマンド：cd <project-name>
+　　コマンド：php artisan serve
+
+
+
+③「http://localhost:8000」にアクセスしてWelcome画面が表示されればOK。
+
+
+
+④起動しているサーバーを停止させるには「Ctrl+C」を押下する（^C と表示される）
+　　※再度サーバーを起動するには「php artisan serve」コマンドの実行が必要

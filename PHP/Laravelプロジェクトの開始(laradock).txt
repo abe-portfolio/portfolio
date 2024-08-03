@@ -1,0 +1,12 @@
+①Laradockによる作業フォルダを作成し、移動する
+②以下のコマンドを実行し、laradockをクローンする
+　└git clone https://github.com/Laradock/laradock.git
+③.env.exampleファイルをコピーして.envファイルを作成する
+　└cp .env.example .env
+④.envファイルを編集する
+　└MYSQL_VERSION=latest　→　MYSQL_VERSION=5.7
+　※COMPOSE_PROJECT_NAME=ec_site　を編集する場合は、大文字は使用不可
+⑤laradockディレクトリへ移動する
+　└cd laradock
+⑥コンテナを起動する（Dockerも起動している必要あり、数十分かかる）
+　└docker-compose up -d nginx mysql

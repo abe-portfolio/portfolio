@@ -1,0 +1,24 @@
+■SSHキー登録までの手順
+①公開鍵と秘密鍵の鍵ペアを作成
+②公開鍵をGitHubへ登録
+
+
+【①公開鍵と秘密鍵の鍵ペアを作成】
+１．C:\Users\xhskw\.ssh　に作成される
+２．ssh-keygen -t rsa　実行
+３．いろいろと聞かれるが、とりあえず3回Enterを押せば作成される
+　　└id_rsa　　：秘密鍵
+　　└id_rsa.pub：公開鍵
+　※これらの鍵はデフォルトの名前なので、この名前の鍵が既に存在すると上書きされる
+　※「Enter file in which to save the key (C:\Users\xhskw/.ssh/id_rsa)：」で任意の名前にすればその名前の鍵ペアが作成される
+
+
+
+【②公開鍵をGitHubへ登録】
+１．GitHubへログイン
+２．Setting　→　SSH And GPG Key　→　New SSH Key
+３．title：公開鍵の名前
+　　Key　：公開鍵の内容
+　　　　　　└clip < 公開鍵のパス.pub　で鍵の内容をコピーできる
+４．ssh -T git@github.com　で確認
+　　└Hi melchior99! You've successfully authenticated, but GitHub does not provide shell access.

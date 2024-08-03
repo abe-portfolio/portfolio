@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
+	"path/filepath"
 	"time"
 
 	qrcode "github.com/skip2/go-qrcode"
@@ -30,6 +30,7 @@ func main() {
 
 	qrFilePath := savePath + string(os.PathSeparator) + qrFilename
 
+<<<<<<< HEAD
 	// QRコードを生成
 	err = generateQRCode(input, qrFilePath)
 	if err != nil {
@@ -38,27 +39,71 @@ func main() {
 	}
 
 	fmt.Printf("QRコードが %s に保存されました\n", qrFilePath)
+=======
+	// 現在時刻を取得
+	now := time.Now()
+
+	// ログファイル名を生成
+	var logFilename string
+
+	// QRコードを生成
+	qrFilename := "QRcode_" + now.Format("20060102-150405") + ".png"
+	QRerr := generateQRCode(input, "./image", qrFilename)
+	if QRerr == nil {
+		// QRコード生成に成功
+		logFilename = qrFilename + "_success.log"
+		log_err := writeLog(logFilename, "./log", input)
+		if log_err != nil {
+			fmt.Println(logFilename + "の作成に失敗しました。")
+		}
+	} else {
+		// QRコード生成に失敗
+		logFilename = qrFilename + "_failure.log"
+		log_err := writeLog(logFilename, "./log", input)
+		if log_err != nil {
+			fmt.Println(logFilename + "の作成に失敗しました。")
+		}
+	}
+>>>>>>> 19cf3783bfd624a5561b30edc7ffa27149768bdd
 }
 
-func generateQRCode(input, filename string) error {
+func generateQRCode(input, path, filename string) error {
 	// QRコードを生成
-	q, err := qrcode.New(input, qrcode.Medium)
+	qr, err := qrcode.New(input, qrcode.Medium)
 	if err != nil {
 		return err
 	}
 
-	// QRコードを画像として保存
-	file, err := os.Create(filename)
+	qrFilepath := filepath.Join(path, filename)
+
+	// １．os.Create()methodで、QRコードを出力する用のファイルを作成しておく
+	file, err := os.Create(qrFilepath)
 	if err != nil {
 		return err
 	}
 	defer file.Close()
 
-	err = q.Write(256, file)
+	// ２．qr.Write()methodで、１で作成したファイルに「画像として」256px四方のQRコードを出力する
+	err = qr.Write(256, file)
 	if err != nil {
 		return err
 	}
+	return nil
+}
 
+func writeLog(filename, logpath, input string) error {
+	logFilepath := filepath.Join(logpath, filename)
+	file, err := os.Create(logFilepath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	logContent := fmt.Sprintf("QRコード生成元の文字列: %s\n", input)
+	_, err = file.WriteString(logContent)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

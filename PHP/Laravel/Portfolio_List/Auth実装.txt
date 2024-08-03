@@ -1,0 +1,60 @@
+Laravelの認証機能を実装するために使用するBreezeとJetstremの違い
+
+【Jetstream】
+　・ログイン/登録
+　・メール認証
+　・2段階認証
+　・セッション管理
+　・プロフィール更新
+　・チーム管理機能
+　・APIサポート(Laravel Sanctum)
+
+【Breeze】
+　・ログイン/登録
+　・パスワードリセット
+　・メール認証などのオプション
+
+----------------------------------------------------------------------
+
+※今回はBreezeを採用
+
+前提条件
+　・Laravelプロジェクトセットアップが完了していること（DB作成も含む）
+　・Composerがインストールされていること
+
+①Laravel Breezeのインストール
+
+　　コマンド：composer require laravel/breeze --dev
+
+
+
+②Breezeのセットアップ
+
+　　コマンド：php artisan breeze:install
+
+
+
+③NPM依存パッケージのインストールとビルド
+
+　　コマンド：npm install
+　　コマンド：npm run dev
+
+
+④マイグレーションの実行
+　※DBセットアップ時にマイグレーション実行済みの場合でも、ここで再度実行する
+
+　　コマンド：php artisan migrate
+
+
+⑤サーバーの起動
+
+　　コマンド：php artisan serve
+
+----------------------------------------------------------------------
+
+Breezeで提供されるデフォルトの認証機能をカスタマイズしたい場合、
+以下のファイルを編集します。
+
+　→　ルート　　　: routes/web.php
+　→　ビュー　　　: resources/views/auth/*
+　→　コントローラ: app/Http/Controllers/Auth/*

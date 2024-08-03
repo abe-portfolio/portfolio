@@ -41,3 +41,8 @@ cargo new プロジェクト名
 // 　├src
 // 　│└main.rs // Hello World
 // 　└Cargo.toml　// コンパイルに必要
+
+   もしくは、
+mkdir プロジェクト名
+cd プロジェクト名
+cargo init
