@@ -27,7 +27,7 @@ use proconio::input;
 
 fn input2() {
     input! {
-        n: i32,
+        n: usize, // nはvを受け取る際のインデックスとして使用する。このような場合やfor文などでインデックスとして使用される場合はusizeで受け取らないとコンパイルエラーになる
         v: [i32; n],
     };
 }
@@ -54,7 +54,7 @@ use proconio::input;
 
 fn input5() {
     input! {
-        n: i32,
+        n: usize,
     };
 
     for _ in 0..n {
@@ -95,4 +95,25 @@ fn main() {
         c: i32,
         d: i32,
     }
+}
+
+/* ============================================================================== */
+
+// H, W
+// S(1,1) S(1,2) ... S(1,W)
+// S(2,1) S(2,2) ... S(2,W)
+// S(3,1) S(3,2) ... S(3,W)
+// ...
+// S(H,1) S(H,2) ... S(H,W)
+
+use proconio::input;
+use proconio::marker::Chars;
+// use proconio::{input, marker::Chars};  とすれば１行で記述可能
+
+fn main() {
+    input! {
+        h: usize,
+        w: usize,
+        s: [Chars; h],  // h 行分の入力を受け取る
+    };
 }
