@@ -1,0 +1,146 @@
+cURL
+
+◇概要
+クライアントからサーバへリクエストし、データを転送するためのツール
+
+
+◇基本構文
+curl [options...] <url>
+
+◇curlの使いどころ
+・ウェブページの取得：ウェブページのHTMLコンテンツを取得
+・APIとの通信：APIに対してHTTPリクエストを送信し、データの取得や更新、削除を行う
+・ファイルのアップロード・ダウンロード：FTP, SFTP, HTTP, HTTPSなどのプロトコルを利用して、
+　ファイルのアップロードやダウンロードを行う
+・ヘッダー情報の確認：ウェブサイトやAPIのHTTPヘッダー情報を確認する
+・認証付きリクエスト：Basic認証、Digest認証、トークン認証など、さまざまな認証方法に対応したリクエストを送信
+・ウェブサイトの監視：定期的にウェブサイトやAPIにリクエストを送信し、ステータスコードや応答時間を監視
+・リダイレクトの追跡：URLがリダイレクトされる場合、 curlを使ってリダイレクト先のURLや遷移を調査
+・プロキシを経由したリクエスト：プロキシサーバーを経由してリクエストを送信
+
+
+◇特徴
+・オプションでメソッドを指定しなければ、GETメソッドを送信する
+　→「curl https://www.google.com」を実行すると、ページソースが結果として取得される
+
+
+◇各種オプション
+
+  オプション		概要							実例
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ -A, --user-agent	ユーザーエージェントを指定します。			curl -A "Mozilla/5.0" https://example.com
+ -b, --cookie		クッキーを指定します。					curl -b "name=value" https://example.com
+ -c, --cookie-jar	取得したクッキーをファイルに保存します。		curl -c cookies.txt https://example.com
+ -d, --data		POSTリクエストで送信するデータを指定します。		curl -d "data=value" https://example.com
+ -D, --dump-header	レスポンスヘッダーをファイルに保存します。		curl -D headers.txt https://example.com
+ -F, --form		フォームデータを送信します。				curl -F "file=@file.txt" https://example.com
+ -H, --header		カスタムヘッダーを追加します。				curl -H "Content-Type: application/json" https://example.com
+ -I, --head		ヘッダー情報のみを表示します。				curl -I https://example.com
+ -k, --insecure		SSL/TLS認証を無視します。				curl -k https://example.com
+ -L, --location		リダイレクト先に追従します。				curl -L https://example.com
+ -o, --output		取得したデータをファイルに保存します。			curl -o output.html https://example.com
+ -O, --remote-name	URLのファイル名でファイルを保存します。			curl -O https://example.com/file.zip
+ -s, --silent		サイレントモードを有効にします。			curl -s https://example.com
+ -u, --user		ユーザー名とパスワードを指定して認証を行います。	curl -u username:password https://example.com
+ -x, --proxy		プロキシ サーバーを指定します。				curl -x http://proxy.example.com:8080 https://example.com
+ -X, --request		HTTPメソッド（GET, POST, PUT, DELETE）			curl -X POST -d “data=value” https://example.com
+										curl -X PUT -d “data=new_value” https://example.com/resource/1
+										curl -X DELETE https://example.com/resource/1
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+◇認証方式の指定
+・Basic認証やDigest認証を使用する場合は、-uオプションでユーザー名とパスワードを指定し、必要に応じて–basicや–digestオプションを使用します。
+【Basic認証】
+    curl -u username:password --basic https://example.com/basic_auth
+
+【Digest認証】
+    curl -u username:password --digest https://example.com/digest_auth
+
+
+◇SSL/TLSの設定
+    –ciphers：使用する暗号スイートを指定
+    –cacert：CA証明書のファイルを指定
+    –cert： クライアント証明書を指定
+    –key：クライアント証明書の秘密鍵を指定
+
+◇複数ファイルの一括ダウンロード
+・複数のファイルを一括でダウンロードする場合は、-Oオプションを使用し、複数のURLを指定します。
+    curl -O https://example.com/itc.txt -O https://example.com/itc2.txt
+
+
+◇curlを活用したスクリプト例
+
+・PythonでcURLをしよ言うする場合
+　└Pythonでcurlコマンドを実行するには、subprocessモジュールを使用
++----------------------------------------------------------------------------------------------------------------------+
+    import subprocess
+
+    response = subprocess.check_output(["curl", "-s", "https://api.example.com/data"])
+    print("API response:", response.decode("utf-8"))
++----------------------------------------------------------------------------------------------------------------------+
+
+
+・Node.jsでcURLを使用する場合
+　└Node.jsでcurlコマンドを実行するには、child_processモジュールを使用
++----------------------------------------------------------------------------------------------------------------------+
+    const { exec } = require("child_process");
+    exec("curl -s https://api.example.com/data", (error, response) => {
+      if (error) {
+        console.error(`Error: ${error}`);
+        return;
+      }
+      console.log("API response:", response);
+    });
++----------------------------------------------------------------------------------------------------------------------+
+
+
+◇curlでのトラブルシューティング
+・よくあるエラーと対処法
+    curl: (6) Could not resolve host: example.com
+	->ホスト名が正しいか確認
+	->インターネット接続が正常に動作しているか確認
+
+    curl: (7) Failed to connect to example.com port 80: Connection refused
+	->ポート番号が正しいか確認し、サーバーが稼働しているかをチェック
+
+    curl: (28) Operation timed out after 30000 milliseconds with 0 bytes received
+	->タイムアウト時間を延ばすか、 サーバーの応答速度を改善
+
+
+◇タイムアウトの設定
+    curl -m 10 https://example.com
+
+
+
+◇通信速度の最適化
+    –retry：転送が失敗した場合のリトライ回数を指定
+    –retry-delay：リトライする際の待ち時間を指定
+    –connect-timeout：接続のタイムアウト時間を指定
+
+  Example)
+	curl --limit-rate 50K --compressed --retry 3 --retry-delay 5 --connect-timeout 10 https://example.com
+	    ・転送速度を50KB/sに制限
+	    ・圧縮転送をおこない、最大3回のリトライ
+	    ・リトライの間隔は5秒
+	    ・接続のタイムアウト時間は10秒
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

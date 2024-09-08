@@ -2,5 +2,3 @@
 　→候補を半分に絞りながら探索していくアルゴリズム
 
 誕生日あてクイズを実装
-
-ファイル名は、Binary Search Tree Traversalから取って、BSTT.xxとする
