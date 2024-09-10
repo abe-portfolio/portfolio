@@ -1,0 +1,10 @@
+C:\Users\melch\OneDrive\デスクトップ\portfolio_workspace\portfolio\Rust\QRcode_generator\target\debug\deps\libbitstream_io-32554ac0676ffb64.rmeta: C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src/lib.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\huffman.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\read.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\write.rs
+
+C:\Users\melch\OneDrive\デスクトップ\portfolio_workspace\portfolio\Rust\QRcode_generator\target\debug\deps\libbitstream_io-32554ac0676ffb64.rlib: C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src/lib.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\huffman.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\read.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\write.rs
+
+C:\Users\melch\OneDrive\デスクトップ\portfolio_workspace\portfolio\Rust\QRcode_generator\target\debug\deps\bitstream_io-32554ac0676ffb64.d: C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src/lib.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\huffman.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\read.rs C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\write.rs
+
+C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src/lib.rs:
+C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\huffman.rs:
+C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\read.rs:
+C:\Users\melch\.cargo\registry\src\index.crates.io-6f17d22bba15001f\bitstream-io-2.5.3\src\write.rs:

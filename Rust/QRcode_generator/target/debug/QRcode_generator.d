@@ -1,0 +1,1 @@
+C:\Users\melch\OneDrive\デスクトップ\portfolio_workspace\portfolio\Rust\QRcode_generator\target\debug\QRcode_generator.exe: C:\Users\melch\OneDrive\デスクトップ\portfolio_workspace\portfolio\Rust\QRcode_generator\src\main.rs
