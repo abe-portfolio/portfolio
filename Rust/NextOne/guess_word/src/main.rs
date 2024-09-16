@@ -24,6 +24,15 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
 
+
+        if answer == guess.trim() {
+            println!("Matched word!");
+            break;
+        } else {
+            println!("Well...What's?");
+        }
+
+        /*
         let trimmed_guess = guess.trim();
         if game.in_dictionary(&trimmed_guess) {
             if answer == trimmed_guess {
@@ -35,6 +44,7 @@ fn main() {
         } else {
             println!("Well...What's?");
         }
+        */
 
         guess.clear();
     }
