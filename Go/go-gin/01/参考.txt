@@ -4,6 +4,16 @@ https://www.youtube.com/watch?v=lf_kiH_NPvM&t=323s
 ②cd 01
 ③go mod init github.com/abe-portfolio/portfolio
 ④go get -u github.com/gin-gonic/gin
+⑤go get -u gorm.io/gorm
+⑥go get -u gorm.io/driver/postgres
 
 
-8:31まで完了
+・PostgreSQL：16.4.1
+
+
+◆GinとGORMについて
+GORMはORM（Object Relation Mapping）の略でオブジェクト同士を関連づける
+
+
+11:47まで完了
+　※postgresDBにアカウントを作成する  superuserのPW:aicompile port:5433

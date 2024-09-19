@@ -11,6 +11,7 @@ func LoadEnvValiables() {
 	// .envファイルの内容を読み取る（PORT=3000)
 	err := godotenv.Load()
 	if err != nil {
+		// log.Fatal("") : エラーメッセージを表示した後に、os.exit(1)が呼び出されプログラムを終了する
 		log.Fatal("Error laoding .env file.")
 	}
 }
