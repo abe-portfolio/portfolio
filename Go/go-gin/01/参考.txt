@@ -4,6 +4,8 @@ https://www.youtube.com/watch?v=lf_kiH_NPvM&t=323s
 ②cd 01
 ③go mod init github.com/abe-portfolio/portfolio
 ④go get -u github.com/gin-gonic/gin
+⑤go get -u github.com/joho/godotenv
+
 
 
 8:31まで完了
