@@ -13,3 +13,15 @@ go mod initで失敗した場合、モジュールのパスを指定する必要
 
 go言語で同一パッケージ内でmain()は複数定義できない。
 　代わりに、init()であればコンパイルエラーにならない（init()は、main()がない時に最初に実施される)
+
+
+
+◇学習のロードマップ
+１．基本的な構文の確認          1_basic.go
+２．スライスや配列などの扱い     2_array_slice.go
+３．構造体                     3_struct.go
+４．インターフェース            4_interface.go
+５．並行処理                   5_goroutine.go
+６．エラーハンドリング          6_error_handling.go
+７．パッケージとモジュール      7_package_module.go
+８．テスト                     8_test.go
