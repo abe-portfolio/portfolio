@@ -8,6 +8,7 @@ import (
 // main()より先に実行される
 func init() {
 	initializers.LoadEnvValiables()
+	initializers.ConnectToDB()
 }
 
 func main() {
