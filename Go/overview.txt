@@ -11,6 +11,7 @@ Go-1.16以降からは非推奨になったが、プロジェクトの作成し�
 
 go mod initで失敗した場合、モジュールのパスを指定する必要がある。→エラーメッセージ：go: cannot determine module path for source directory 
 　githubを使用する場合は、go mod init github.com/<username>/<プロジェクト名>
+                        go mod init github.com/abe-portfolio/portfolio
 
 go言語で同一パッケージ内でmain()は複数定義できない。
 　代わりに、init()であればコンパイルエラーにならない（init()は、main()がない時に最初に実施される)

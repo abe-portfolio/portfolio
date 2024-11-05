@@ -9,8 +9,8 @@ Web-Application
 
 
 --- 作成中 ---
-ChatApp
-Go_chanel
+ChatApp       ※優先
 go_my_recipe
 Go-BitCoin
 go-gin
+go-ToDo       ※優先
