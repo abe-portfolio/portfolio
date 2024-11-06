@@ -1,6 +1,6 @@
 ・使用フレームワーク
 　→GORMとSQLiteを使用する
-　→Echoを使ってみる
+　→ginによって実装
 
 ・SQLの策定　済
 　→SQLite
@@ -9,9 +9,8 @@
 　→コマンド：sqlite3 --version
 　→3.45.3 2024-04-15 13:34:05 8653b758870e6ef0c98d46b3ace27849054af85da891eb121e9aaa537f1e8355 (64-bit)
 
-・go getで取得したginを削除する　済
-　→go.modファイルからGinに関する行を削除
-　→go mod tidyを実行して依存関係を解決
+・ginの取得
+　→
 
 ・Echoの取得　
 　→go get -u github.com/labstack/echo/v4

@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
-	//"github.com/labstack/echo/v4"
+	// "github.com/labstack/echo/v4"  Echo
+	// "github.com/gin-gonic/gin"  gin
+	// "gorm.io/gorm"  GORM本体
+	// "gorm.io/driver/sqlite"  GORMドライバー：SQLite
 )
 
 func main() {
