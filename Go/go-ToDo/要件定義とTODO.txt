@@ -10,7 +10,8 @@
 　→3.45.3 2024-04-15 13:34:05 8653b758870e6ef0c98d46b3ace27849054af85da891eb121e9aaa537f1e8355 (64-bit)
 
 ・ginの取得
-　→
+　→go get -u github.com/gin-gonic/gin
 
-・Echoの取得　
-　→go get -u github.com/labstack/echo/v4
+・GORMの取得（ドライバーはSQLiteを採用）
+　→go get -u gorm.io/gorm
+　→go get -u gorm.io/driver/sqlite
