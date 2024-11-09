@@ -2,27 +2,26 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/gin-gonic/gin"
 	// "github.com/labstack/echo/v4"  Echo
-	// "github.com/gin-gonic/gin"  gin
-	// "gorm.io/gorm"  GORM本体
-	// "gorm.io/driver/sqlite"  GORMドライバー：SQLite
+	// gin
+	//GORMドライバー：SQLite
 )
 
 func main() {
 	fmt.Println("Hello, World")
+
+	rt := gin.Default()
+
+	rt.LoadHTMLGlob("templates/*.html")
+	rt.Static("/static", "./static")
+
+	rt.GET("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
+			"name": "Gin-User",
+		})
+	})
+
+	rt.Run(":8080")
 }
-
-/*
-func main() {
-    // Echoインスタンスの作成
-    e := echo.New()
-
-    // ルートエンドポイントの設定
-    e.GET("/", func(c echo.Context) error {
-        return c.String(http.StatusOK, "Hello, Echo!")
-    })
-
-    // サーバーの開始
-    e.Start(":8080")
-}
-*/
