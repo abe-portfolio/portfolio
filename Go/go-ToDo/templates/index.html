@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        {{ templates "header.html" . }} <!-- panic: template: index.html:12: function "templates" not defined -->
+        {{ template "header.html" . }}
     </header>
 
     <!-- 動作確認用 -->
@@ -21,7 +21,7 @@
     </div>
 
     <footer>
-        {{ templates "footer.html" . }}
+        {{ template "footer.html" . }}
     </footer>
 </body>
 </html>

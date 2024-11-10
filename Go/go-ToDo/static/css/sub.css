@@ -1,8 +1,12 @@
 /* Header */
+#header_wrap {
+    background-color: blue;
+}
 
 
 
 /* footer */
 #copylight {
     text-align: center;
+    background-color: blue;
 }
