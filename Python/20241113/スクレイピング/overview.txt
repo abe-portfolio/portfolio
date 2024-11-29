@@ -1,0 +1,22 @@
+・仮想環境名
+
+
+・仮想環境コマ構築ンド
+python -m venv 仮想環境名
+
+・仮想環境起動コマンド
+./仮想環境名/Scripts/activate
+
+・仮想環境終了コマンド
+./仮想環境名/Scripts/deactivate
+
+・使用モジュール
+Requests        ver.
+Selenium        ver.
+BeautifulSoup4  ver.
+
+・freeze
+pip freeze > requirements.txt
+※requirements.txtを使用する場合、そうれぞれのPythonのバージョンが等しいこと
+
+pip install -r requirements.txt
