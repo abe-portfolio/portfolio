@@ -52,7 +52,7 @@
                                     <!-- .nav-link：ナビゲーションバー内のアイテムのリンクを表す -->
                                     <a id="logout-link" class="nav-link" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                         <i class="fa-solid fa-right-from-bracket fa-3x"></i>
                                     </a>
                                     <form id="logout-form" method="POST" action="{{ route('logout') }}" class="d-none">
