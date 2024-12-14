@@ -26,7 +26,7 @@ func C_min_0(a int) int {
 	return a
 }
 
-// C_min_n: 引数aには式を渡し、計算結果がマイナスの時はnを返す
+// C_min_n: 引数aには式を渡し、計算結果がn未満の時はnを返す
 func C_min_n(n, a int) int {
 	if n > a {
 		return 0
