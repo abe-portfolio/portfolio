@@ -5,8 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	// "github.com/labstack/echo/v4"  Echo
-	// gin
-	//GORMドライバー：SQLite
+	// GORMドライバー：SQLite
 )
 
 func main() {

@@ -1,3 +1,6 @@
+// たぶんEchoを使うときに作成した。
+//　ginでは不要
+
 function loadHTML(elementId, filePath) {
     fetch(filePath)
         .then(response => response.text())

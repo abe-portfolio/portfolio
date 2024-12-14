@@ -2,10 +2,13 @@
 cd /d C:\Users\xhskw\OneDrive\デスクトップ\Git_workspace\portfolio
 
 echo ---------------------------------------------------------------
+echo add
 git add .
 echo ---------------------------------------------------------------
+echo commit
 git commit --allow-empty-message -m ""
 echo ---------------------------------------------------------------
+echo push
 git push origin main
 echo ---------------------------------------------------------------
 pause
