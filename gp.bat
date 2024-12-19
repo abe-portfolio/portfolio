@@ -1,23 +1,20 @@
 @echo off
-set PWD=%dp~0
+set PWD=%~dp0
 cd /d %PWD%
 
 echo ---------------------------------------------------------------
 git add .
-rem if %ERRORLEVEL% neq X goto ERR_add
-echo add:%ERRORLEVEL%
+if %ERRORLEVEL% neq 0 goto ERR_add
 echo,
 echo add:OK
 echo ---------------------------------------------------------------
 git commit --allow-empty-message -m ""
-rem if %ERRORLEVEL% neq X goto ERR_commit
-echo commit:%ERRORLEVEL%
+if %ERRORLEVEL% neq 0 goto ERR_commit
 echo,
 echo commit:OK
 echo ---------------------------------------------------------------
 git push origin main
-rem if %ERRORLEVEL% neq X goto ERR_push
-echo push:%ERRORLEVEL%
+if %ERRORLEVEL% neq 0 goto ERR_push
 echo,
 echo push:OK
 echo ---------------------------------------------------------------
