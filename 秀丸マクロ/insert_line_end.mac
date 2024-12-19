@@ -1,0 +1,19 @@
+disabledraw;
+gofiletop;
+golineend;
+
+$result = input("s––‚É‘}“ü‚·‚é•¶š—ñ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢");
+
+if (strlen($result) == 0) {
+	  message("•¶š—ñ‚Ì“ü—Í‚ª‚È‚¢‚½‚ßˆ—‚ğI—¹‚µ‚Ü‚·");
+	  endmacro;
+}
+
+while (code != eof) {
+  	insert $result;
+	  down;
+	  golineend;
+}
+
+enabledraw;
+endmacro;

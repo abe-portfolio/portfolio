@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"go-QRcode/M_Generator"
 	"go-QRcode/M_Reader"
@@ -13,6 +15,12 @@ func main() {
 	// 他モジュールの呼び出し確認
 	M_Reader.R_index()
 	M_Generator.G_index()
+
+	// Get Project's Root Directory
+	ProjectRoot, err1 := os.Getwd()
+	if err1 != nil {
+		return fmt.Errorf("faild to get project-root directory: %w", err1)
+	}
 
 	r := gin.Default()
 
