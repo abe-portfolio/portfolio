@@ -14,3 +14,6 @@ go_my_recipe
 Go-BitCoin
 go-gin
 go-ToDo       ※優先
+go-reversi    ※優先
+go-QRcode     ※優先
+go-api_fft
