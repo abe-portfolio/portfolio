@@ -2,11 +2,20 @@
 package M_Generator
 
 import (
+	"fmt"
 	"image"
 	"os"
 	"path/filepath"
 	"time"
 )
+
+func init() {
+	// Get Project's Root Directory
+	ProjectRoot, err1 := os.Getwd()
+	if err1 != nil {
+		return fmt.Errorf("faild to get project-root directory: %w", err1)
+	}
+}
 
 // func G_index(projectRoot,) {}
 func G_index() {
@@ -34,7 +43,7 @@ func Generate() {
 
 // QRコードを保存する
 func SaveImage(projectRoot, fileName string, qrImage image.Image) error {
-	imageSaveDir := filepath.Join(projectRoot, "QR_string")
+	imageSaveDir := filepath.Join(projectRoot, "QR_image")
 
 	// ファイルを作成、pngとして保存するようにするが、その際にファイル名まで指定したい
 	fullPath := filepath.Join(imageSaveDir, fileName, qrImage)
