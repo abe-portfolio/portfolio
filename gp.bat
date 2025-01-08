@@ -57,5 +57,5 @@ goto END
  
 :END
 pause
-exit
+
 
