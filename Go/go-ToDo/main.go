@@ -11,16 +11,16 @@ import (
 func main() {
 	fmt.Println("Hello, World")
 
-	rt := gin.Default()
+	r := gin.Default()
 
-	rt.LoadHTMLGlob("templates/*.html")
-	rt.Static("/static", "./static")
+	r.LoadHTMLGlob("templates/*.html")
+	r.Static("/static", "./static")
 
-	rt.GET("/", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
 			"name": "Gin-User",
 		})
 	})
 
-	rt.Run(":8080")
+	r.Run(":8080")
 }

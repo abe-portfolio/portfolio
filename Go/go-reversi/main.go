@@ -105,6 +105,13 @@ func placePiece(board *Board, x, y, color int) {
 	}
 }
 
+func playerName(color int) string {
+	if color == Black {
+		return "黒 (●)"
+	}
+	return "白 (○)"
+}
+
 // ゲームのメインループ
 func main() {
 	board := initializeBoard()
@@ -112,9 +119,14 @@ func main() {
 
 	for {
 		printBoard(board)
+		fmt.Println("\"9 9\" と入力すると終了します。")
 		fmt.Printf("プレイヤー %s のターンです(x y)： ", playerName(currentPlayer))
 		var x, y int
 		fmt.Scan(&x, &y)
+
+		if x == 9 || y == 9 {
+			break
+		}
 
 		if x < 0 || x >= 8 || y < 0 || y >= 8 || !canPlace(board, x, y, currentPlayer) {
 			fmt.Println("その場所には置けません。")
@@ -130,11 +142,6 @@ func main() {
 			currentPlayer = Black
 		}
 	}
-}
 
-func playerName(color int) string {
-	if color == Black {
-		return "黒 (●)"
-	}
-	return "白 (○)"
+	fmt.Println("ゲームを終了します。")
 }
