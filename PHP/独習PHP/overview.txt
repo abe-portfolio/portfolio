@@ -25,3 +25,8 @@ Apache Lounge VC15 Server built:   Jun 24 2022 10:13:23
 
 PHPのバージョンを 7.4.30 から 8.0.0 へ変更
 https://windows.php.net/downloads/releases/archives/
+
+httpd-xampp.conf の内容も変更する
+　→LoadModule php7_module の行を探して、新しいバージョンの PHP に変更。
+　　LoadModule php_module "C:/xampp/php/php8apache2_4.dll"
+　　　※php8以降は｢LoadModule php7_module｣は「LoadModule php_module」に変わっている
