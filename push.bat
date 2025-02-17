@@ -32,7 +32,7 @@ echo,
 REM --- ³íI—¹ ---
 echo ³íI—¹
 pause
-exit
+goto END
 
 REM --- ˆÙíI—¹ ---
 :ERR_add
