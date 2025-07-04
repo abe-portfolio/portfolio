@@ -1,0 +1,32 @@
+body {
+    background-color: rgb(231 227 212);
+}
+
+.topWrap a {
+    display: block;
+}
+
+.topWrap {
+    margin-left: 45px;
+}
+
+.subPageHeader {
+    display: flex;
+    align-items: center;
+}
+
+.subPageHeader a {
+    position: fixed;
+    top: 40px;
+    right: 20px;
+    z-index: 1000;
+}
+
+h1 {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.header {
+    margin-left: 30px;
+}

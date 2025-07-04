@@ -1,0 +1,99 @@
+Next.jsの導入方法
+①Node.js（最新版）と npm もしくは yarn がインストールされていること
+②npx create-next-app@latest プロジェクト
+③質問は基本的にYESで良い
+④プロジェクトフォルダへ移動して、npm run devで開発サーバーを起動
+
+
+
+my-next-app/
+├── app/
+│   ├── page.tsx           ← ルートページ（http://localhost:3000）
+│   ├── layout.tsx         ← 全体レイアウト（ヘッダー、フッターなど）
+│   └── about/
+│       └── page.tsx       ← /about ページ
+├── public/                ← 静的ファイル（画像、faviconなど）
+│   └── logo.png
+├── styles/                ← CSSやTailwindなどのスタイル
+│   └── globals.css
+├── node_modules/
+├── .gitignore
+├── next.config.js         ← Next.jsの設定ファイル
+├── package.json
+├── tsconfig.json          ← TypeScript設定（ts使用時）
+└── README.md
+
+
+
+【基礎知識】
+◆.tsxファイルとは何か？
+　.tsx は TypeScript + JSX の拡張子です。（TSX = TypeScript + XML（JSX））
+　JSXとは、JavaScriptの中でHTMLライクな構文を使える仕組み（Reactの特徴）
+　.tsx を使うことで、型安全 + ReactのUI定義 を両立できます。
+
+◆他の .tsx ファイル（コンポーネント）の読み込み方法は？
+　components/Header.tsxを読み込む例
+　import Header from '@/components/Header';
+
+◆Next.jsはORMを使用すればDBとの接続も可能なフルスタックフレームワーク
+　Prisma、Drizzle、TypeORM などのORMで接続可能
+　NextAuth.js などでOAuth/メールログイン対応
+
+◆page.tsxという名称について
+　Next.jsではappファルダ配下ではpage.tsxというtsxファイルがあることで自動的にルーティングされる。
+　コンポーネントとして作成するなら名称は自由だが、ページ本体のファイルとしては認識されないので注意。
+
+
+
+【インポートについて】
+app/
+├── A/
+│   ├── page.tsx     ← ここでインポートする
+│   └── A.tsx
+├── B/
+│   └── B.tsx
+└── C/
+　   ├── D/
+　   │   └── D.tsx
+　   └── E/
+　       └── E.tsx
+
+// 同じフォルダ内の A.tsx をインポート
+import A from './A';
+
+// 隣のフォルダ B の B.tsx をインポート
+import B from '../B/B';
+
+// C/D/D.tsx をインポート
+import D from '../C/D/D';
+
+// C/E/E.tsx をインポート
+import E from '../C/E/E';
+
+
+
+※各ファイルでエクスポートしておく必要があります
+export default function E() {
+  return <div>これはEのコンポーネントです</div>;
+}
+
+
+
+【エイリアスパスを使いたい場合】
+◆tsconfig.json に以下を追加
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"]　　　　　★@ が app/ を指すようになります。
+    }
+  }
+}
+
+
+
+【名前付きエクスポートの場合】
+ファイル側が export default ではなく export const E = () => {...} のような名前付きエクスポートの場合は、以下のようにインポートします
+import { E } from '../C/E/E';
+
+
