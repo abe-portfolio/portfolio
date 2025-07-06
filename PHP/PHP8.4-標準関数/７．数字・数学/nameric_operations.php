@@ -1,12 +1,59 @@
-| 関数                           | 説明                   | 典型構文                                                   |
-| ---------------------------- | -------------------- | ------------------------------------------------------ |
-| `round($data[, $precision])` | 四捨五入                 | `round($data, 2);`                                     |
-| `random_int($data1, $data2)` | 暗号論的乱数               | `random_int(1, 100);`                                  |
-| `bcdivmod($data1, $data2)`   | **商と余りを同時取得**（8.4新規） | `[$q,$r] = bcdivmod($data1, $data2);` ([php.watch][1]) |
-
-[1]: https://php.watch/versions/8.4/bcdivmod "BCMath: New `bcdivmod` function - PHP 8.4 • PHP.Watch"
-
-
-
 <?php
+/*  目次
+1. round
+3. bcdivmod
+4. ceil
+5. floor
+6. abs
+7. sign
+8. pow
+9. sqrt
+10. cbrt
+11. max
+12. min
+13. array_sum
+14. array_product
+15. array_diff
+16. array_intersect
+17. array_merge
+18. array_slice
+19. array_chunk
+20. array_reverse
+13. rand
+14. random_int
+15. random_bytes
+16. random_float
+17. mt_rand
+18. pow
+19. sqrt
+20. log
+21. log10
+22. log1p
+23. exp
+24. bcadd
+25. bcsub
+26. bcmul
+27. bcdiv
+28. bcmod
+29. bcpow
+30. bcsqrt
+31. bcscale
+32. intval
+33. floatval
+34. is_numeric
+35. is_int
+36. is_float
+37. is_finite
+38. is_infinite
+39. is_nan
+32. decbin
+33. decoct
+34. dechex
+35. bindec
+36. octdec
+37. hexdec
+38. base_convert
+*/
+
+// round
 ?>

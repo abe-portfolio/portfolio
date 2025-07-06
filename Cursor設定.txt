@@ -1,0 +1,10 @@
+コメントの色の変更
+　１．設定を開く: Ctrl + , (Windows) または Cmd + , (Mac)
+　２．検索ボックスに「Editor: Token Color Customizations」と入力
+　３．「Edit in settings.json」をクリック
+　４．"editor.tokenColorCustomizations": { }　に「"comments": "#8BC34A"」を追記する
+	    "editor.tokenColorCustomizations": {
+        	"comments": "#8BC34A"
+	    }
+　５．settings.jsonを保存（Ctrl + S　／　Cmd + S）
+　６．Cursorを再起動するか、Ctrl + Shift + Pで「Developer: Reload Window」を実行

@@ -1,0 +1,95 @@
+【バージョン関連】
+PHP　8.2
+
+
+【環境構築手順】
+１．任意の作業ディレクトリへ移動
+
+２．Laravelプロジェクトを作成
+　　　composer create-project laravel/laravel プロジェクト名
+
+３．プロジェクトフォルダへ移動
+　　　cd プロジェクト名
+
+４．Laradockをcloneする
+　　　git clone https://github.com/laradock/laradock.git
+
+５．Laradockの設定
+　　　cd laradock
+　　　cp .env.example .env
+
+６．.envの編集
+　　　# Laravelプロジェクトとのパス設定
+　　　APP_CODE_PATH_HOST=../
+
+　　　# MySQLとphpMyAdminのポート
+　　　MYSQL_VERSION=latest
+　　　MYSQL_PORT=3306
+
+　　　# phpMyAdminのポート
+　　　PMA_PORT=8081
+
+　　　# workspaceのPHPバージョン
+　　　PHP_VERSION=8.2
+
+７．Dockerコンテナ起動(docker Desktopを起動しておくこと)
+　　　docker-compose up -d nginx mysql phpmyadmin workspace
+
+８．Laravel側の.envを修正（DB設定）
+　　　DB_CONNECTION=mysql
+　　　DB_HOST=mysql
+　　　DB_PORT=3306
+　　　DB_DATABASE=default
+　　　DB_USERNAME=root
+　　　DB_PASSWORD=root
+
+９．MySQLと接続確認
+　　　# workspaceに接続
+　　　docker-compose exec workspace bash
+
+　　　# マイグレーション実行
+　　　php artisan migrate
+
+
+10．アプリにブラウザからアクセス
+　　　http://localhost
+
+
+
+補足：Laradock起動後の使い方
+　　　操作		　　    　 コマンド
+　　　起動		　　　  　 docker-compose up -d nginx mysql phpmyadmin workspace
+　　　停止		　　　     docker-compose down
+　　　コンテナ内に入る　　　docker-compose exec workspace bash
+
+
+
+
+【エラー時】
+「docker-compose up -d nginx mysql phpmyadmin workspace」実行時に
+「error during connect: this error may indicate that the docker daemon is not running:（以下略）」が返されたら、Docker Desktopが起動していないため、
+アプリを起動し、「docker info」を実行。
+
+http://localhost/　にアクセスすると、「Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0".」が返された。
+「docker-compose exec workspace bash」でコンテナ内に入り、「php -v」でバージョンを確認。
+PHP 7.4.33 (cli) (built: Feb 14 2023 18:31:23) ( NTS )　となっており、.envに記載した 8.2 になっていないためコンテナをリビルドする。
+　（１）exit でコンテナから出る
+　（２）docker-compose build workspace
+　（３）docker-compose down
+　（４）docker-compose up -d nginx mysql phpmyadmin workspace
+　（５）docker-compose exec workspace bash
+　（６）php -v
+　（７）問題なければ、再度 exit でコンテナから出る
+上記を実施した上で、http://localhost/　にアクセスしても「Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0".」が表示cされる場合
+　（８）docker-compose exec php-fpm bash
+　（９）php -v　でバージョン確認。古ければ以下を実施。
+　（10）docker-compose build php-fpm
+　（11）docker-compose up -d php-fpm nginx
+
+
+
+docker-compose logs mysql でログを確認可能
+
+
+
+

@@ -1,0 +1,58 @@
+creaete-react-appに必要なもの
+
+Node.js	:10.16以上　　（v18.16.0.）
+npm	:5.6以上
+
+
+
+◆コマンド
+npm create vite@latest react-chat-app -- --template react
+cd react-chat-app
+npm install
+npm run dev
+
+
+----------------------------------------------------
+ VITE v6.3.2  ready in 182 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+----------------------------------------------------
+と表示されればＯＫ！
+　　Local: http://localhost:5173/　にアクセスすれば作成中のReactアプリが表示される
+　　ショートカット
+	キー | 意味
+	   h | ヘルプ表示
+	   r | サーバーをリスタート
+   	   u | サーバー URL を再表示
+	   o | ブラウザを開く（自動）
+	   q | サーバー停止（exit）
+
+
+
+◆注意点
+※プロジェクト名に大文字は使えない
+※npm install　はプロジェクト単位で実行が必要
+
+
+
+◆環境の解説
+・src	 ：開発用ファイルが格納される
+	　 ReactコンポーネントのJSXファイルを置く
+・public ：静的ファイルが格納される
+	　 htmlファイルや画像ファイルなど
+・build  ：本場用ファイルが格納される
+　　　　　 npm run buildコマンドで生成される（distやbuildという名前で作成される）
+
+
+
+
+◆npmコマンドについて
+
+　　　コマンド  | Vite プロジェクト   | CRA プロジェクト
+----------------------------------------------------------------
+　　npm run dev | ✅ 使う（開発）     | ❌ ない
+　　　npm start | ❌ ない             | ✅ 開発用サーバー起動
+　npm run build | ✅ 本番用ビルド     | ✅ 本番用ビルド
+npm run preview | ✅ ビルド結果を確認 | ❌ ない

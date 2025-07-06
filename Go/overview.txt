@@ -17,9 +17,13 @@ go mod initで失敗した場合、モジュールのパスを指定する必要
                         go mod init github.com/abe-portfolio/portfolio
 
 go言語で同一パッケージ内でmain()は複数定義できない。
-　代わりに、init()であればコンパイルエラーにならない（init()は、main()がない時に最初に実施される)
+　代わりに、init()であればコンパイルエラーにならない（init()は、main()がない時に最初に実施される）
 
 
 プロジェクトを作成（go mod init <プロジェクト名>）し、go.modができたら依存関係を解決してくれるので
 %GOPATH%の外でもGoやモジュールの使用が可能
 　→go.modがないと失敗したりする
+
+◆プロジェクトの始め方
+１．プロジェクトフォルダの作成
+２．go mod init github.com/abe-portfolio/portfolio　の実行

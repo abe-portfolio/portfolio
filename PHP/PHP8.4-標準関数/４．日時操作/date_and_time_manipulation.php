@@ -1,9 +1,19 @@
-| 関数                     | 説明          | 典型構文                         |
-| ---------------------- | ----------- | ---------------------------- |
-| `time()`               | 現在タイムスタンプ   | `$now = time();`             |
-| `date($format, $data)` | フォーマット出力    | `echo date('Y-m-d', $data);` |
-| `strtotime($data)`     | 文字列→タイムスタンプ | `strtotime('next Monday');`  |
-
 <?php
+/*  目次
+1. time
+2. date
+3. strtotime
+*/
 
+// time
+// 現在のタイムスタンプを取得
+echo time();
+
+// date
+// フォーマット出力
+echo date('Y-m-d', $now);
+
+// strtotime
+// 文字列→タイムスタンプ
+echo strtotime('next Monday');  // 次の月曜日のタイムスタンプ
 ?>

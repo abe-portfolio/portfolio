@@ -2,6 +2,7 @@
 /* 目次
 1. file_get_contents
 2. file_put_contents
+3.stream_context_create
 */
 
 
@@ -52,4 +53,27 @@ $context = stream_context_create([
     ]
 ]);
 
+
+
+// stream_context_create
+// PHPでファイルやネットワークストリーム（HTTP, FTP など）にアクセスする際の「コンテキスト（文脈）」を作成
+// コンテキスト = リクエストのメソッドやヘッダー、タイムアウトなど、ストリームの動作を細かく制御したい場合に使う
+$context = stream_context_create([
+    'http' => [
+        'method' => 'POST',
+        'header' => "Content-Type: application/json\r\n",
+        'content' => $data
+    ]
+]);
+// よく使うオプション
+//method    	'GET', 'POST', 'PUT', 'DELETE' など
+//header    	'Content-Type: application/json' など
+//content   	POST送信するデータ
+//timeout    	timeout 秒
+//proxy     	プロキシサーバーの設定
+//user_agent	ユーザーエージェントの設定
+//follow_location	リダイレクトの設定
+//max_redirects	リダイレクトの最大数
+//ssl       	SSL証明書の検証
+//verify_peer	SSL証明書の検証
 ?>
