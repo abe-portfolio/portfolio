@@ -13,5 +13,15 @@
 [1]: https://php.watch/versions/8.4/array_find-array_find_key-array_any-array_all "New `array_find`, `array_find_key`, `array_any`, and `array_all` functions - PHP 8.4 • PHP.Watch"
 
 <?php
+/*  目次
+1. array_map
+2. array_filter
+3. array_reduce
+4. array_merge
+5. in_array
+6. sort
+7. usort
+*/
+
 
 ?>

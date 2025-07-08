@@ -10,6 +10,7 @@
 $hash = password_hash($data, PASSWORD_DEFAULT); 
 // PASSWORD_DEFAULT：現在のPHPで推奨される最強のアルゴリズム（現在はbcrypt）
 
+
 // password_verify
 // ハッシュ照合
 if (password_verify($data, $hash)) {
