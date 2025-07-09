@@ -1,4 +1,4 @@
-コメントの色の変更
+◆コメントの色の変更
 　１．設定を開く: Ctrl + , (Windows) または Cmd + , (Mac)
 　２．検索ボックスに「Editor: Token Color Customizations」と入力
 　３．「Edit in settings.json」をクリック
@@ -8,3 +8,18 @@
 	    }
 　５．settings.jsonを保存（Ctrl + S　／　Cmd + S）
 　６．Cursorを再起動するか、Ctrl + Shift + Pで「Developer: Reload Window」を実行
+
+-------------------------------------------------------------
+
+◆複数行のコメントアウト（列選択→一括コメントアウト）
+１．列選択
+	Shift + Alt + マウスドラッグ: 矩形選択
+		or
+	Ctrl + Shift + Alt + 矢印キー: キーボードで矩形選択
+
+２．一括コメントアウト
+	Ctrl + / 
+
+-------------------------------------------------------------
+
+◆
