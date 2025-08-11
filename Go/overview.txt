@@ -26,4 +26,5 @@ go言語で同一パッケージ内でmain()は複数定義できない。
 
 ◆プロジェクトの始め方
 １．プロジェクトフォルダの作成
-２．go mod init github.com/abe-portfolio/portfolio　の実行
+２．プロジェクトフォルダへ移動
+３．go mod init github.com/abe-portfolio/portfolio　の実行
