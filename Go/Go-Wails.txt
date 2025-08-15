@@ -1,0 +1,14 @@
+Wailsのインストール
+
+  go install github.com/wailsapp/wails/v2/cmd/wails@latest
+
+Wails
+  wails version　でパスが通っているか確認する
+  パスが通ってなければ .zprofile に以下を追加する
+  export PATH=$PATH:$HOME/go/bin
+  追加後、以下コマンドを実行する
+  source ~/.zprofile
+
+  
+  Wailsプロジェクトの開始
+    wails init -n go-ferry

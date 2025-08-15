@@ -22,4 +22,7 @@
 
 -------------------------------------------------------------
 
-◆
+◆VSCodeの拡張機能を追加でインポート
+　１．VSCode側で拡張機能をエクスポート（vsixファイル）
+　２．CursorでCtrl + Shift + P / Command + Shift + P でパレットを開く
+　３．Extensions: Install from VSIX...　を選択してvsixファイルを選択
