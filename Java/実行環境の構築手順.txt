@@ -1,0 +1,18 @@
+◆確認
+java -version
+javac -version
+
+
+① JDKのダウンロード
+　https://www.oracle.com/java/technologies/downloads/
+
+② インストーラを実行
+
+③ 環境変数の設定
+　JAVA_HOMEの設定
+　　新規 → 変数名：JAVA_HOME
+　　変数値：JDKのインストール先（例：C:\Program Files\Java\jdk-17）
+
+　Pathの編集
+　　Pathを選択 → 編集 → 新規
+　　%JAVA_HOME%\bin を追加

@@ -1,0 +1,49 @@
+試験時間
+　-90分
+
+出題数
+　-60問前後、合格ライン 65％程度
+
+対象
+　-Javaプログラミングの基本理解
+
+出題範囲（ざっくり）
+　-Javaの基本（型、変数、演算子、制御構文）
+　-オブジェクト指向（クラス、継承、ポリモーフィズム）
+　-APIの利用（String, Array, List, Map など）
+　-例外処理
+　-パッケージ、モジュール
+　-基本的なマルチスレッド・ラムダ式・Stream
+
+
+
+-------------------------------------------------------------------
+
+ロードマップ
+基礎文法を固める（1～2週間）
+　-基本の型と演算子
+　　int, double, boolean, char, String
+　　算術演算子、論理演算子、比較演算子
+
+　-制御構文
+　　if / switch / for / while / do-while / break / continue
+
+　-配列・コレクション
+　　配列の宣言・初期化
+　　List, Set, Map の基本操作
+
+
+
+オブジェクト指向をマスター（2週間）
+　-クラス・メソッド・フィールド
+　-コンストラクタ / this / static
+　-継承（extends, super）
+　-インターフェース（implements, defaultメソッド）
+　-ポリモーフィズム（型と実体の違い）
+　-カプセル化（アクセス修飾子 public/private/protected）
+
+
+例外処理・API（1週間）
+　-try-catch-finally / throw / throws
+　-Checked Exception と Unchecked Exception の違い
+　-代表的APIの使い方（String, StringBuilder, Arrays, ArrayList, HashMap, Wrapperクラス）

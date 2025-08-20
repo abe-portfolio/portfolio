@@ -1,0 +1,96 @@
+正解数　4/9 約45%
+
+Q1
+パッケージに属さないクラスは存在しない
+　-> 未記述でも「無名パッケージ」に属するため
+無名パッケージ＝packageキーワードによる宣言がない
+
+
+
+Q2
+packageキーワードはソースの先頭
+    package ～～;
+    import ～～.*;
+
+
+
+Q3
+無名パッケージ：要はpackageキーワードによる宣言がないソースファイル
+
+
+
+Q4
+無名パッケージのクラスには同じ無名パッケージに属するクラスしかアクセスできない
+通常のパッケージ：
+---------------------------
+    package com.example;
+    public class A {}
+---------------------------
+    -> com.example.A という 住所付きのクラス になる
+    -> 他のパッケージから import com.example.A; すればアクセス可能
+
+無名パッケージ：
+---------------------------
+    // package文なし
+    public class B {}
+---------------------------
+    -> 名前（住所）が付いていないので、外部から「どこにあるか」指定できない
+    -> そのため 同じ無名パッケージ内のクラスからしか使えない
+
+
+
+Q5
+エントリーポイント＝mainメソッド
+使用できるのは以下の２つのみ
+    public static void main(String[] args){...}
+    public static void main(String... args){...}
+※String[]などをintに変えてもコンパイルはできる（その後の実行でエラーになる）
+
+javaコマンドでの実行時に数字を渡しても、文字列としての数字になるため、
+数値として扱いたい場合は変換が必要。
+
+実際のシステムやアプリでは、public static void main(String[] args){...}のようにmainメソッドを書くが、
+Spring Bootのようなフレームワークを呼ぶ処理のみ記述して、実際にエントリーポイントの処理をして行いたいことは使用するフレームワークの方で記述する
+
+Spring Bootの例
+--------------------------------------------------------------------------------------------------------
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class ReservationApplication {
+
+        public static void main(String[] args) {
+            SpringApplication.run(ReservationApplication.class, args);
+        }
+    }
+--------------------------------------------------------------------------------------------------------
+
+
+
+Q6
+javaコマンド：JVMを起動し、mainメソッドを実行する
+
+
+
+Q7
+SE11から、javacコマンドによるコンパイルが不要になった（javaコマンドのみでコンパイル～実行までセットで行えるようになった）
+※javaコマンドでコンパイルできるのは単発ソースファイルのため、複数のファイルをアプリケーションとしてコンパイルするときにはjavacコマンドの実行が必要
+
+
+
+Q8
+￥" は " のエスケープシーケンス
+    ￥"　：　"
+    "a "b：a b   ※「a 」と「b」が連結されているので注意    
+
+
+
+Q9
+実行の手順は以下の２つ
+    １
+        java ～～.java
+    
+    ２
+        javac ～～.java
+        java ～～
