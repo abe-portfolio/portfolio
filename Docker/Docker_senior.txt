@@ -1,0 +1,94 @@
+----------------------------------------------------------------------------------------------------------------------------
+🎯ゴール（シニアエンジニアレベル）
+　・Dockerを利用した開発環境標準化の設計ができる
+　・本番環境におけるパフォーマンスチューニング・セキュリティ強化ができる
+　・チームに対してベストプラクティスを指導できる
+　・DockerをKubernetesやCI/CD基盤と組み合わせて設計できる
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+🛠 Docker 学習ロードマップ（シニアエンジニア向け）
+STEP 1: 基礎理解（必須基盤）
+・コンテナの概念理解
+　　VMとの違い（オーバーヘッド・カーネル共有・隔離）
+　　Namespaces と Cgroups（プロセス隔離・リソース制御）
+・基本操作
+　　docker run, docker ps, docker exec, docker logs
+　　イメージとコンテナのライフサイクル
+　　DockerHub / プライベートレジストリの利用
+・Dockerfile
+　　ベースイメージ選定（Alpine vs Debian）
+　　レイヤーキャッシュの仕組み
+　　COPY vs ADD、ENTRYPOINT vs CMD
+
+
+STEP 2: 実践的な利用
+・イメージの最適化
+　　マルチステージビルド
+　　サイズ削減（不要ファイル削除、distroless）
+・ボリュームとデータ管理
+　　匿名ボリューム・ネームドボリューム・バインドマウントの違い
+　　データ永続化戦略
+・ネットワーク
+　　Bridge / Host / Overlay ネットワークの使い分け
+　　ポートマッピングとサービス間通信
+・ログ管理
+　　ログドライバ（json-file, syslog, fluentd など）
+
+
+STEP 3: チーム開発・本番運用での利用
+・Docker Compose
+　　docker-compose.yml の書き方
+　　複数コンテナの依存関係管理
+　　ローカル開発環境の標準化
+・セキュリティ
+　　rootless Docker
+　　Capabilitiesの制御
+　　イメージの脆弱性スキャン（Trivy, Grype）
+・本番運用
+　　イメージのタグ付け戦略（semantic versioning, git sha）
+　　CI/CD パイプラインに組み込み（GitHub Actions, GitLab CI）
+
+
+STEP 4: 高度な知識（シニアエンジニア領域）
+・パフォーマンス
+　　コンテナの起動時間・メモリ使用量の計測
+　　OverlayFS, AUFS, Btrfs, ZFS の違い
+・トラブルシュート
+　　コンテナ内でのデバッグ (nsenter, docker exec -it --privileged)
+　　ネットワーク疎通確認（docker network inspect, tcpdump）
+・セキュリティ・ガバナンス
+　　CIS Docker Benchmark
+　　イメージ署名（Notary, Cosign）
+　　SBOM（Software Bill of Materials）
+・Kubernetes との接続点
+　　Docker は単体利用よりも K8s でのオーケストレーション前提になる
+　　CRI (Container Runtime Interface) と Docker Shim 廃止の背景
+　　containerd, CRI-O との関係
+
+
+STEP 5: エコシステム & アーキテクト視点
+・レジストリ管理
+　　Harbor / Artifactory でのセキュアなレジストリ運用
+・モニタリング
+　　Prometheus + Grafana でのリソース監視
+　　ELK / Loki でのログ収集
+・設計思想
+　　「Immutable Infrastructure」としてのコンテナ設計
+　　マイクロサービスアーキテクチャにおける役割
+・アンチパターン
+　　1コンテナ1プロセス原則を破るケース
+　　大きすぎるイメージ
+　　本番でのlatest利用
+
+
+
+
+
+
+
+
+
+

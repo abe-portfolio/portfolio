@@ -1,0 +1,62 @@
+Gitの概要
+・分散型バージョン管理システム（DVMS）
+　・Linuxカーネル開発のために2005年に開発された
+　・変更履歴を管理する仕組み
+　・特徴
+　　-- 分散型　　　　　　：すべての開発者が完全な履歴を持つ → 中央サーバ不要でも作業可
+　　-- 高速　　　　　　　：ブランチの作成・マージが軽量
+　　-- 信頼性　　　　　　：履歴がハッシュで管理され、改ざん困難
+　　-- 柔軟なワークフロー：Git Flow, GitHub Flow, trunk-based などに対応
+
+
+GitHub
+・世界最大のGitリポジトリホスティングサービス
+・2018年にMicrosoftが買収
+・特徴
+　　-- ソーシャルコーディング	：Fork / Pull Request / Review 機能
+　　-- GitHub Actions					：CI/CD機能（後述）
+　　-- GitHub Codespaces			：クラウドIDE
+　　-- Dependabot						：依存関係の自動アップデート
+　　-- セキュリティ機能				：脆弱性スキャン、Secret Scanning
+　　-- GitHub Packages				：パッケージ管理（npm, Maven, Docker, etc.）
+・利用シーン
+　-- OSS開発
+　-- スタートアップや中小規模チームでの標準的利用
+　-- エンタープライズは GitHub Enterprise をオンプレやクラウドで利用可能
+
+
+GitLab
+・GitHubの競合だが、より DevOps 一体型
+・2011年にウクライナ発祥、OSSとして提供（MITライセンス）
+・特徴
+　-- SCM + CI/CD + セキュリティ がワンストップで提供される
+　　-> GitHubはリポジトリ管理中心 → CI/CDはGitHub Actionsを後付け
+　　-> GitLabは最初から統合設計
+　-- セルフホスト可能（Community Edition / Enterprise Edition）
+　-- GitLab CI/CD				：.gitlab-ci.yml で記述、Runner で実行
+　-- プロジェクト管理機能	：Issue, Board, Wiki, Roadmap
+　-- セキュリティ機能			：SAST/DAST, Container Scanning, License Compliance
+・利用シーン
+　-- オンプレ必須の企業（金融・官公庁など）
+　-- DevOpsプラットフォームを GitLabだけで完結 させたいチーム
+　-- プライベートクラウド / セキュリティ重視の現場
+
+
+GitHub Actions
+・GitHub上で動作する CI/CD（継続的インテグレーション / デリバリー）サービス
+・2019年正式リリース
+・特徴
+　-- YAML形式のワークフローで定義 (.github/workflows/*.yml)
+　-- ジョブの並列/依存関係を制御可能
+　-- マトリックスビルド（例: Python3.8/3.9/3.10 の全環境でテスト）
+　-- Event-driven	：push, pull request, release などをトリガーに動作
+　-- Marketplace	：他者が作ったActionを再利用可能
+　-- セキュリティ：Secret管理、権限最小化 (GITHUB_TOKEN)
+・できること
+　-- テスト自動実行
+　-- Dockerイメージのビルド＆デプロイ
+　-- GitHub Pagesへの自動デプロイ
+　-- AWS / GCP / Azure へのデプロイ連携
+・比較ポイント
+　-- GitLab CI/CD と比べて「GitHubエコシステムと密結合」しているのが強み
+　-- Runnerはセルフホストも可能

@@ -1,0 +1,15 @@
+GitLab
+・GitHubの競合だが、より DevOps 一体型
+・2011年にウクライナ発祥、OSSとして提供（MITライセンス）
+・特徴
+　-- SCM + CI/CD + セキュリティ がワンストップで提供される
+　　-> GitHubはリポジトリ管理中心 → CI/CDはGitHub Actionsを後付け
+　　-> GitLabは最初から統合設計
+　-- セルフホスト可能（Community Edition / Enterprise Edition）
+　-- GitLab CI/CD				：.gitlab-ci.yml で記述、Runner で実行
+　-- プロジェクト管理機能	：Issue, Board, Wiki, Roadmap
+　-- セキュリティ機能			：SAST/DAST, Container Scanning, License Compliance
+・利用シーン
+　-- オンプレ必須の企業（金融・官公庁など）
+　-- DevOpsプラットフォームを GitLabだけで完結 させたいチーム
+　-- プライベートクラウド / セキュリティ重視の現場

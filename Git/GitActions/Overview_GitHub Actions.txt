@@ -1,0 +1,18 @@
+GitHub Actions
+・GitHub上で動作する CI/CD（継続的インテグレーション / デリバリー）サービス
+・2019年正式リリース
+・特徴
+　-- YAML形式のワークフローで定義 (.github/workflows/*.yml)
+　-- ジョブの並列/依存関係を制御可能
+　-- マトリックスビルド（例: Python3.8/3.9/3.10 の全環境でテスト）
+　-- Event-driven	：push, pull request, release などをトリガーに動作
+　-- Marketplace	：他者が作ったActionを再利用可能
+　-- セキュリティ：Secret管理、権限最小化 (GITHUB_TOKEN)
+・できること
+　-- テスト自動実行
+　-- Dockerイメージのビルド＆デプロイ
+　-- GitHub Pagesへの自動デプロイ
+　-- AWS / GCP / Azure へのデプロイ連携
+・比較ポイント
+　-- GitLab CI/CD と比べて「GitHubエコシステムと密結合」しているのが強み
+　-- Runnerはセルフホストも可能

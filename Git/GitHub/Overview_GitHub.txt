@@ -1,0 +1,14 @@
+GitHub
+・世界最大のGitリポジトリホスティングサービス
+・2018年にMicrosoftが買収
+・特徴
+　　-- ソーシャルコーディング	：Fork / Pull Request / Review 機能
+　　-- GitHub Actions					：CI/CD機能（後述）
+　　-- GitHub Codespaces			：クラウドIDE
+　　-- Dependabot						：依存関係の自動アップデート
+　　-- セキュリティ機能				：脆弱性スキャン、Secret Scanning
+　　-- GitHub Packages				：パッケージ管理（npm, Maven, Docker, etc.）
+・利用シーン
+　-- OSS開発
+　-- スタートアップや中小規模チームでの標準的利用
+　-- エンタープライズは GitHub Enterprise をオンプレやクラウドで利用可能
