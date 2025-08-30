@@ -71,6 +71,7 @@ const resolvers = {
 const server = new ApolloServer({ typeDefs, resolvers });
 
 // サーバー起動
+// url は　 server.listen() の戻り値
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });

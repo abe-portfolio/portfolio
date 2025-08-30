@@ -11,3 +11,11 @@ Facebookが2012年に開発し、2015年に公開されたAPI用のクエリ言�
 　→ APIの仕様がスキーマに明示されているので、開発者は自動補完やドキュメント生成が可能。
 
 JSONで返す
+
+
+・prisma
+ORM（Object Relational Mapping）ツール
+Prisma が生成する Prisma Client（@prisma/client） は Node.js（または Deno）向けのライブラリ
+
+
+Prismaが親和性が高いため、Node.js + Prisma + GraphQL 一般的。
