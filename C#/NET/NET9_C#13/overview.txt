@@ -1,0 +1,31 @@
+% dotnet --version
+9.0.304
+
+.NET 9 SDK に ASP.NET Core も同梱されている
+
+
+.NETプロジェクト作成
+WEB／GUI／テスト／ゲーム　などによってプロジェクトの作成コマンドが異なる
+
+以下のコマンドで確認可能
+dotnet new --list
+
+
+テンプレート名     　 短い名前                  言語       タグ
+---------------------------  --------------------------  ----------  ----------------------------------
+API コントローラー   apicontroller             [C#]         Web/ASP.NET
+
+
+
+dotnet new 短い名前 -n プロジェクト名　を保管してプロジェクトの作成コマンド
+例：
+　dotnet new apicontroller -n MyProject
+
+
+
+
+実務でよく使われるプロジェクト
+　Web系							：webapi, mvc, webapp, blazorserver
+　GUI系							：winforms, wpf, maui
+　バッチ/ライブラリ系	：console, classlib
+　テスト							：xunit, nunit, mstest
