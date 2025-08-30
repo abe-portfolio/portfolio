@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// デフォルトのPostgreSQLではなく SQLite データベースを使用
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// シンプルな User　モデルを定義
+model User {
+  // カラム名　型　オプション
+  id    Int     @id @default(autoincrement())
+  name  String
+  email String  @unique
+}
+
+// @id は主キーを指定するためのキーワード
+// @default(autoincrement()) は自動インクリメントされるように指定するためのキーワード
+// @unique  はユニークな値を指定するためのキーワード
+// デフォルトでNOT NULLとなるため、NOT NULL制約を指定する必要はない
+// 型の後に「?」をつけると、NULLを許可する
+//   name  String   -> NOT NULL
+//   name  String?  -> NULL OK

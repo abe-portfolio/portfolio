@@ -1,0 +1,38 @@
+melchior@AbenoMacBook-Pro ~ % node -v
+v22.17.1
+melchior@AbenoMacBook-Pro ~ % npm -v
+10.9.2
+melchior@AbenoMacBook-Pro ~ % npx -v
+10.9.2
+
+
+node
+　JavaScript をブラウザの外（サーバーサイド）で実行するためのランタイム[ ]=JavaScript の実行エンジン);。
+　Chrome が使っている V8エンジン をベースにしている。
+　node コマンドを叩くと、JavaScript ファイルを実行できる。
+　（例）
+　　→node app.js　のように、CLIなどでも実行可能になる
+
+npm
+　Node.js に付属している パッケージ管理ツール。
+　ライブラリやフレームワークをインストール、更新、管理するために使う。
+　Python の pip、Go の go get、Rust の cargo みたいなもの。
+　（例）
+　　→npm install express　でexpress という Web フレームワークをプロジェクトに追加する。
+
+npx
+　npm に同梱されている コマンド実行補助ツール。
+　下で解説している、ローカルインストールされたコマンドを呼び出して実行できる（ローカル優先探索）
+　（例）
+　　→npx prisma init  でPrisma をグローバルにインストールしてなくても、プロジェクト内の依存関係にある prisma CLI を実行できる
+
+
+npxでのグローバルとは？
+　npm のパッケージには インストール先が2種類ある
+　　・グローバルインストール
+　　　　→OS 全体で使える場所（/usr/local/lib/node_modules など）に置く
+　　　　→どのディレクトリからでもコマンドが呼べる
+　　・ローカルインストール
+　　　　→プロジェクトフォルダ直下の node_modules に置かれる
+　　　　→package.json で依存関係として管理される
+　　　　→通常はローカルで管理するのが推奨（プロジェクトごとにバージョン管理できるため）

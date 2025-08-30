@@ -1,0 +1,100 @@
+構築手順
+
+①node関連のパッケージ確認
+　→ node,npm,npx.txt参照
+
+
+②node.jsプロジェクトの作成
+　→ cd ~/Desktop/Github/portfolio/GraphQL
+　→ mkdir graphql-prisma-api
+　→ cd graphql-prisma-api
+　→ npm init -y
+
+
+③必要なパッケージのインストール
+　　# GraphQLサーバー関連
+　　npm install apollo-server graphql
+　　　　# apollo-server → GraphQL サーバーを簡単に立てるためのライブラリ
+　　　　# graphql → GraphQL の仕様ライブラ
+
+　　# Prisma関連
+　　npm install prisma @prisma/client
+　　　　# prisma → Prisma CLI（マイグレーションやコード生成用）
+　　　　# @prisma/client → Prisma が生成するクライアントライブラリ
+
+
+④Prismaの初期化
+　→ npx prisma init
+
+　以下が生成：
+　　・prisma/schema.prisma → Prisma のスキーマファイル（DB の構造や Prisma Client の生成設定を定義）
+　　・.env → DB 接続設定（デフォルトは PostgreSQL の例が入ってる）
+
+
+⑤データベースの準備
+　④で生成した.envにはデフォルトでPostgreSQLが設定されているが、今回は学習用にSQLiteに変更する
+　　→ DATABASE_URL="file:./dev.db"
+
+
+⑥Prismaスキーマの編集
+　→ shema.prisma 参照
+　　// Prismaスキーマでデータベースのテーブルを定義（Userテーブル）
+　　model User {
+            // @id　				：このフィールドがプライマリキー（主キー）
+            // @default(autoincrement[ ]););	：新しいレコードが作成される際に、自動的に連番のIDが割り当てられる
+ 　　    id    Int     @id @default(autoincrement())
+　　     name  String
+ 　　    // @unique				：このフィールドの値は一意である
+  　　   email String  @unique
+　　}
+
+
+⑦Prisma Client の生成　　※モデル（shema.prisma）を編集したら必ず行う
+　→ npx prisma generate
+
+
+⑧マイグレーションの実行
+　→ npx prisma migrate dev --name init
+　　　dev.db が作られ、User テーブルが出来る
+　　　dev.db の dev は .env ファイルに設定した名称のため
+
+
+⑨GraphQL サーバーを作成
+　-- プロジェクト直下に index.js を作成
+　-- node index.js を実行し、サーバーを起動（Server ready at http://localhost:4000/　が表示されれば成功）
+
+
+⑩Curlコマンドでリクエストを投げる（JSONが帰ってくればOK）
+　 curl -X POST http://localhost:4000/ \
+　  -H "Content-Type: application/json" \
+　  -d '{"query": "{ users { id name email } }"}'
+
+※以下、戻り値
+{"data":{"users":[{"id":1,"name":"Alice","email":"alice@example.com"}]}}
+
+
+
+
+
+
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+【総まとめ】
+GraphQL API を作るための基本操作（時系列順）
+　１．Prisma スキーマの修正（schema.prisma）
+　２．Prisma Client の生成(npx prisma generate)
+　３．マイグレーション（npx prisma migrate dev --name init）
+　４．GraphQL スキーマの記述（js ファイル内の typeDefs）
+　　　　Query・Mutation・Type を定義
+　５．Resolver 関数の作成・修正
+　６．Apollo Server の初期化と起動（動作確認）
+
+
+
+
+
+
+
+
