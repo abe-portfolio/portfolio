@@ -43,37 +43,39 @@ import "fmt"
 
 func main() {
 	m := map[string]int{"apple": 100, "banana": 200}
-	fmt.Println(m)
-	fmt.Println(m["apple"])
+	fmt.Println(m)          // map[apple:100 banana:200]
+	fmt.Println(m["apple"]) // 100
 	m["banana"] = 300
-	fmt.Println(m)
+	fmt.Println(m) // map[apple:100 banana:300]
 	m["new"] = 500
-	fmt.Println(m)
+	fmt.Println(m) // map[apple:100 banana:300 new:500]
 
 	// 存在しないキーを参照すると「0」が返る
-	fmt.Println(m["nothing"])
+	fmt.Println(m["nothing"]) // 0
 
 	// ２つ目の返り値はキーが存在するかどうかのboolを返す
 	v, ok := m["apple"]
-	fmt.Println(v, ok)
+	fmt.Println(v, ok) // 100 true
 
 	v2, ok2 := m["nothig"]
-	fmt.Println(v2, ok2)
+	fmt.Println(v2, ok2) // 0 false
 
 	// メモリ上に空のリストを作成してから値を代入する例
 	m2 := make(map[string]int)
 	m2["pc"] = 5000
-	fmt.Println(m2)
+	fmt.Println(m2) // map[pc:5000]
 
 	/*
 		以下はエラーとなる makeを使用していないため、メモリ上に後から代入するためのmapがない
 		var m3  map[string]int
 		m3["pc"] = 5000
-		fmt.Println(m3)
+		fmt.Println(m3) // panic: assignment to entry in nil map
+
+		　→make()を使用することでメモリの確保が可能！
 	*/
 
-	// varで宣言をすると、mapだろうとスライスだろうと
-	// メモリを確保しないため、nilとなる
+	// まとめ
+	// varで宣言をすると、mapだろうとスライスだろうとメモリを確保しないため、nilとなる
 	// →make()を使用することでメモリの確保が可能
 
 }
