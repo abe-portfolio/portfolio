@@ -1,0 +1,74 @@
+◆JavaScript と TypeScript の違い
+
+-----JavaScript------------------------------------
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3));     // 5
+console.log(add("2", "3")); // "23"（文字列結合になってしまう）
+---------------------------------------------------
+
+
+
+
+-----TypeScript------------------------------------
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+console.log(add(2, 3));     // OK
+console.log(add("2", "3")); // エラー（型が合わない）
+---------------------------------------------------
+
+
+コンパイル時にエラーを検出できるため、実行前にバグを防げる
+
+
+
+
+◆開発の流れ（基本）
+　１．TypeScriptをインストール
+　　　　「HowToInstall参照」
+　２．ファイルを作成
+　３．トランスパイル（TypeScript → JavaScript に変換する工程）
+　　　　例：tsc index.ts
+　４．JavaScriptとして実行
+　　　　例：node index.js
+
+
+
+◆TypeScriptでできること（概要）
+型注釈（Type Annotation）	`let x: number = 10;` のように型を明示
+インターフェース		オブジェクトの型構造を定義
+クラス				オブジェクト指向の記法（ES6以降のJSにもあるが、TSは型安全）
+ジェネリクス			型をパラメータとして扱う（再利用性UP）
+Enum				定数集合の扱いが簡単になる
+Union / Intersection 型		型の組み合わせを柔軟に扱える
+
+
+
+
+
+◆プロジェクトの作成
+　ReactやNext.js、Vue.jsなどのプロジェクト内で扱うため、TypeScript専用のプロジェクトの作成は無い。
+　今回はReactプロジェクトを作成する際にTypeScriptのテンプレートを選択する形で作成する。
+　※必要なnodeやnpmなどはインストール済みの状態を想定。
+
+　１．プロジェクトを作成したいディレクトリへ移動する。
+
+　２．npx create-react-app プロジェクト名 --template typescript
+
+　３．cd プロジェクト名
+
+　４．npm start
+
+
+　※プロおジェクト名には、npmの命名ルールが適用される
+　・英小文字 (a-z) のみ使用可能
+　・数字 (0-9)、ハイフン (-)、アンダースコア (_) は使用可能
+　・大文字 (A-Z) は使用不可
+　・スペース、記号、句読点は使用不可
+　・名前は最大 214 文字まで
+　・先頭と末尾にハイフンやアンダースコアを置かない
+

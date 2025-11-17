@@ -1,0 +1,31 @@
+C:\Users\melch>php -v
+PHP Deprecated:  PHP Startup: session.sid_length INI setting is deprecated in Unknown on line 0
+
+Deprecated: PHP Startup: session.sid_length INI setting is deprecated in Unknown on line 0
+PHP Deprecated:  PHP Startup: session.sid_bits_per_character INI setting is deprecated in Unknown on line 0
+
+Deprecated: PHP Startup: session.sid_bits_per_character INI setting is deprecated in Unknown on line 0
+PHP 8.4.14 (cli) (built: Oct 21 2025 19:37:18) (ZTS Visual C++ 2022 x64)
+Copyright (c) The PHP Group
+Zend Engine v4.4.14, Copyright (c) Zend Technologies
+
+
+
+XAMPPのPHP 8.2.12を8.4.14にバージョンアップしようとしたときに、
+公式からPHP 8.4.14のzipをダウンロードし、C:\xampp\php配下に上書きコピーした。
+その後、バージョンを確認しようとしたところ上記のエラー。
+
+※php公式のzipはphp.iniが含まれていないため、上書きしないと必要なファイルなどが消えてしまう可能性がある。
+「PHP Deprecated:～」はphp.iniに非推奨となっているパラメータが残っていたために出力されている。
+　　→session.sid_length
+　　→session.sid_bits_per_character
+記載の削除またはコメントアウトし、XAMPPの場合なのでApacheの再起動後に再度「php -v」でバージョンを確認すると
+
+C:\Users\melch>php -v
+PHP 8.4.14 (cli) (built: Oct 21 2025 19:37:18) (ZTS Visual C++ 2022 x64)
+Copyright (c) The PHP Group
+Zend Engine v4.4.14, Copyright (c) Zend Technologies
+
+になっていた。
+また、Apacheの[Admin]をクリックすると、ダッシュボードに遷移するので、「PHPinfo」からも
+XAMPPで使用するPHPのバージョンを確認できる。

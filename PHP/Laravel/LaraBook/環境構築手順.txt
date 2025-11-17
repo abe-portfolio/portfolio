@@ -1,0 +1,66 @@
+事前
+　Docker Desktop、Docker Composerはインストール済み
+
+
+
+バージョン確認（バージョンアップ前）
+　docker --version
+　Docker version 28.2.2, build e6534b4
+
+　docker compose version 
+　Docker Compose version v2.37.1-desktop.1
+
+
+
+バージョンアップ方法
+　Docker Desktopを起動し、設定（歯車アイコン）を開く。
+　"Software Updates"を確認し、更新があれば行う。
+　更新後、"Docker Engine"にてバージョンを確認
+
+
+
+
+バージョン確認（バージョンアップ後）
+　docker --version
+　Docker version 28.5.1, build e180ab8
+
+　docker compose version 
+　Docker Compose version v2.40.2-desktop.1
+
+
+
+
+プロジェクト作成
+　１．Laradockをクローン
+　　cd LaraBook
+　　git clone https://github.com/Laradock/laradock.git
+
+
+　２．.env 設定を作成
+　　cd laradock
+　　copy .env.example .env
+    code .env　　または、cursor .env
+　　-------------------------------------------------------------
+	# プロジェクト名を一意に
+	COMPOSE_PROJECT_NAME=larabook
+
+	# Laravelプロジェクトがあるパス
+	APP_CODE_PATH_HOST=../src/
+	
+	# MySQL設定（Laravel側と合わせる）
+	MYSQL_DATABASE=larabook
+	MYSQL_USER=laravel
+	MYSQL_PASSWORD=secret
+	MYSQL_ROOT_PASSWORD=root
+　　-------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+

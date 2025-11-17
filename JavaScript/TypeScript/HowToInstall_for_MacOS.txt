@@ -1,0 +1,30 @@
+１．Node.jsがインストールされているか確認。
+	node -v
+	npm -v
+
+２．未インストールの場合、以下のコマンドでインストール。
+	brew install node
+
+３．TypeScriptがインストールされているか確認。
+	tsc -v
+
+４．未インストールの場合、下記コマンドでインストール。
+	sudo npm install -g typescript
+
+
+
+
+
+
+
+
+
+
+
+
+
+バージョンアップコマンド
+node		brew update
+npm		brew upgrade node
+TypeScript	sudo npm update -g typescript
+
