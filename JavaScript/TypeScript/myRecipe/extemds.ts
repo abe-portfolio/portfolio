@@ -1,3 +1,4 @@
+// 記載が冗長な例
 type Knight = {
     hp: number 
     mp: number
@@ -13,9 +14,9 @@ type Wizard = {
     magicSkill: string
 }
 
+
 // 職業が増えると大変
 // 共通するプロパティを切り出して拡張する
-
 type CharacterBase = {
     hp: number
     mp: number

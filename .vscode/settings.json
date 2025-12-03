@@ -1,0 +1,150 @@
+{
+    // エディタ設定
+    "editor.semanticHighlighting.enabled": true,
+    "editor.semanticTokenColorCustomizations": {
+      "enabled": true,
+      "[Default Dark+]": {
+        "rules": {
+          "string": "#CE9178",
+          "*.importDeclaration": "#CE9178",
+          "type": "#4EC9B0",
+          "namespace": "#4EC9B0",
+          "comment": "#6A9955",
+          "keyword": "#C586C0",
+          "function": "#DCDCAA",
+          "variable": "#9CDCFE",
+          "parameter": "#9CDCFE"
+        }
+      },
+      "rules": {
+        "string": "#CE9178",
+        "*.importDeclaration": "#CE9178",
+        "type": "#4EC9B0",
+        "namespace": "#4EC9B0",
+        "comment": "#6A9955",
+        "keyword": "#C586C0",
+        "function": "#DCDCAA",
+        "variable": "#9CDCFE",
+        "parameter": "#9CDCFE"
+      }
+    },
+    "editor.tokenColorCustomizations": {
+      "textMateRules": [
+        {
+          "scope": [
+            "keyword.control",
+            "keyword.other",
+            "keyword.import",
+            "keyword.package",
+            "storage.type",
+            "storage.modifier"
+          ],
+          "settings": {
+            "foreground": "#C586C0"
+          }
+        },
+        {
+          "scope": [
+            "entity.name.function",
+            "support.function"
+          ],
+          "settings": {
+            "foreground": "#DCDCAA"
+          }
+        },
+        {
+          "scope": [
+            "entity.name.type",
+            "support.type",
+            "entity.name.namespace",
+            "entity.name.package"
+          ],
+          "settings": {
+            "foreground": "#4EC9B0"
+          }
+        },
+        {
+          "scope": [
+            "variable.other",
+            "variable.parameter"
+          ],
+          "settings": {
+            "foreground": "#9CDCFE"
+          }
+        },
+        {
+          "scope": [
+            "string",
+            "string.quoted.double",
+            "string.quoted.single",
+            "meta.import string",
+            "punctuation.definition.string.begin",
+            "punctuation.definition.string.end"
+          ],
+          "settings": {
+            "foreground": "#CE9178"
+          }
+        },
+        {
+          "scope": [
+            "comment",
+            "comment.line.double-slash",
+            "keyword.other.directive",
+            "keyword.control.directive",
+            "meta.preprocessor"
+          ],
+          "settings": {
+            "foreground": "#6A9955"
+          }
+        },
+        {
+          "scope": [
+            "constant.numeric"
+          ],
+          "settings": {
+            "foreground": "#B5CEA8"
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator",
+            "keyword.operator.assignment",
+            "keyword.operator.arithmetic",
+            "keyword.operator.comparison",
+            "keyword.operator.logical",
+            "keyword.operator.increment",
+            "keyword.operator.decrement",
+            "keyword.operator.assignment.go",
+            "keyword.operator.arithmetic.go",
+            "keyword.operator.initialize.go",
+            "keyword.operator.address.go",
+            "keyword.operator.pointer.go",
+            "punctuation.definition.operator"
+          ],
+          "settings": {
+            "foreground": "#D4D4D4"
+          }
+        }
+      ]
+    },
+    
+    // Go言語固有の設定
+    "[go]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      },
+      "editor.defaultFormatter": "golang.go",
+      "editor.tabSize": 4,
+      "editor.insertSpaces": false,
+      "editor.semanticHighlighting.enabled": false
+    },
+    
+    // Go拡張機能の設定
+    "go.useLanguageServer": true,
+    "go.lintOnSave": "package",
+    "go.vetOnSave": "package",
+    "gopls": {
+      "ui.semanticTokens": false
+    }
+  }

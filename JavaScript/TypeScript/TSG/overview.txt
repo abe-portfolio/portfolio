@@ -1,0 +1,12 @@
+TypeScript　ｘ　GraphQL
+
+CQRS　Command-Query Responsibility Segregation
+=>コマンドクエリ責務分離原則
+  - 参照系（Query）と更新系（Command）で異なるモデルを使用するアプローチ
+
+
+Prisma
+　ORMとあるが、実際はクエリビルダー + プレーンなオブジェクトを返すデータアクセスライブラリ
+
+
+　
