@@ -16,10 +16,6 @@ import seaborn as sns
 
 def main():
     print('Hello World')
-    print('遥か先で　君へ　狙いを定めた恐怖を')
-    print('どれだけ僕は払いきれるんだろう？')
-    print('半信半疑で　世間体　気にしてばっかのYESTERDAY')
-    print('ポケットの中で怯えたこの手はまだ忘れられないまま')
     iris = sns.load_dataset('iris')
 
     
