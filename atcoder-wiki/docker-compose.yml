@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: wiki-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: wikiuser
+      POSTGRES_PASSWORD: wikipass
+      POSTGRES_DB: wiki
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

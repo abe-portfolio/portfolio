@@ -1,21 +1,9 @@
 {
-    // エディタ設定
-    "editor.semanticHighlighting.enabled": true,
-    "editor.semanticTokenColorCustomizations": {
-      "enabled": true,
-      "[Default Dark+]": {
-        "rules": {
-          "string": "#CE9178",
-          "*.importDeclaration": "#CE9178",
-          "type": "#4EC9B0",
-          "namespace": "#4EC9B0",
-          "comment": "#6A9955",
-          "keyword": "#C586C0",
-          "function": "#DCDCAA",
-          "variable": "#9CDCFE",
-          "parameter": "#9CDCFE"
-        }
-      },
+  // エディタ設定
+  "editor.semanticHighlighting.enabled": true,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "[Default Dark+]": {
       "rules": {
         "string": "#CE9178",
         "*.importDeclaration": "#CE9178",
@@ -27,124 +15,282 @@
         "variable": "#9CDCFE",
         "parameter": "#9CDCFE"
       }
-    },
-    "editor.tokenColorCustomizations": {
-      "textMateRules": [
-        {
-          "scope": [
-            "keyword.control",
-            "keyword.other",
-            "keyword.import",
-            "keyword.package",
-            "storage.type",
-            "storage.modifier"
-          ],
-          "settings": {
-            "foreground": "#C586C0"
-          }
-        },
-        {
-          "scope": [
-            "entity.name.function",
-            "support.function"
-          ],
-          "settings": {
-            "foreground": "#DCDCAA"
-          }
-        },
-        {
-          "scope": [
-            "entity.name.type",
-            "support.type",
-            "entity.name.namespace",
-            "entity.name.package"
-          ],
-          "settings": {
-            "foreground": "#4EC9B0"
-          }
-        },
-        {
-          "scope": [
-            "variable.other",
-            "variable.parameter"
-          ],
-          "settings": {
-            "foreground": "#9CDCFE"
-          }
-        },
-        {
-          "scope": [
-            "string",
-            "string.quoted.double",
-            "string.quoted.single",
-            "meta.import string",
-            "punctuation.definition.string.begin",
-            "punctuation.definition.string.end"
-          ],
-          "settings": {
-            "foreground": "#CE9178"
-          }
-        },
-        {
-          "scope": [
-            "comment",
-            "comment.line.double-slash",
-            "keyword.other.directive",
-            "keyword.control.directive",
-            "meta.preprocessor"
-          ],
-          "settings": {
-            "foreground": "#6A9955"
-          }
-        },
-        {
-          "scope": [
-            "constant.numeric"
-          ],
-          "settings": {
-            "foreground": "#B5CEA8"
-          }
-        },
-        {
-          "scope": [
-            "keyword.operator",
-            "keyword.operator.assignment",
-            "keyword.operator.arithmetic",
-            "keyword.operator.comparison",
-            "keyword.operator.logical",
-            "keyword.operator.increment",
-            "keyword.operator.decrement",
-            "keyword.operator.assignment.go",
-            "keyword.operator.arithmetic.go",
-            "keyword.operator.initialize.go",
-            "keyword.operator.address.go",
-            "keyword.operator.pointer.go",
-            "punctuation.definition.operator"
-          ],
-          "settings": {
-            "foreground": "#D4D4D4"
-          }
-        }
-      ]
-    },
-    
-    // Go言語固有の設定
-    "[go]": {
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit"
-      },
-      "editor.defaultFormatter": "golang.go",
-      "editor.tabSize": 4,
-      "editor.insertSpaces": false,
-      "editor.semanticHighlighting.enabled": false
-    },
-    
-    // Go拡張機能の設定
-    "go.useLanguageServer": true,
-    "go.lintOnSave": "package",
-    "go.vetOnSave": "package",
-    "gopls": {
-      "ui.semanticTokens": false
     }
-  }
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "keyword.control",
+          "keyword.other",
+          "keyword.import",
+          "keyword.package",
+          "storage.type",
+          "storage.modifier"
+        ],
+        "settings": {
+          "foreground": "#C586C0"
+        }
+      },
+      {
+        "scope": [
+          "entity.name.function",
+          "support.function"
+        ],
+        "settings": {
+          "foreground": "#DCDCAA"
+        }
+      },
+      {
+        "scope": [
+          "entity.name.type",
+          "support.type",
+          "entity.name.namespace",
+          "entity.name.package"
+        ],
+        "settings": {
+          "foreground": "#4EC9B0"
+        }
+      },
+      {
+        "scope": [
+          "variable.other",
+          "variable.parameter"
+        ],
+        "settings": {
+          "foreground": "#9CDCFE"
+        }
+      },
+      {
+        "scope": [
+          "string",
+          "string.quoted.double",
+          "string.quoted.single",
+          "meta.import string",
+          "punctuation.definition.string.begin",
+          "punctuation.definition.string.end"
+        ],
+        "settings": {
+          "foreground": "#CE9178"
+        }
+      },
+      {
+        "scope": [
+          "comment",
+          "comment.line.double-slash",
+          "keyword.other.directive",
+          "keyword.control.directive",
+          "meta.preprocessor"
+        ],
+        "settings": {
+          "foreground": "#6A9955"
+        }
+      },
+      {
+        "scope": [
+          "constant.numeric"
+        ],
+        "settings": {
+          "foreground": "#B5CEA8"
+        }
+      },
+      {
+        "scope": [
+          "keyword.operator",
+          "keyword.operator.assignment",
+          "keyword.operator.arithmetic",
+          "keyword.operator.comparison",
+          "keyword.operator.logical",
+          "keyword.operator.increment",
+          "keyword.operator.decrement",
+          "keyword.operator.assignment.go",
+          "keyword.operator.arithmetic.go",
+          "keyword.operator.initialize.go",
+          "keyword.operator.address.go",
+          "keyword.operator.pointer.go",
+          "punctuation.definition.operator"
+        ],
+        "settings": {
+          "foreground": "#D4D4D4"
+        }
+      },
+      {
+        "scope": [
+          "keyword.operator.php",
+          "punctuation.definition.variable.php",
+          "variable.other.php"
+        ],
+        "settings": {
+          "foreground": "#D4D4D4"
+        }
+      },
+      {
+        "scope": [
+          "entity.name.function.php",
+          "support.function.construct.php",
+          "support.function.variable.php"
+        ],
+        "settings": {
+          "foreground": "#DCDCAA"
+        }
+      },
+      {
+        "scope": [
+          "storage.type.class.php",
+          "storage.type.function.php",
+          "storage.modifier.php",
+          "keyword.other.namespace.php",
+          "entity.name.type.class.php"
+        ],
+        "settings": {
+          "foreground": "#4EC9B0"
+        }
+      },
+      {
+        "scope": [
+          "string.quoted.single.php",
+          "string.quoted.double.php",
+          "punctuation.definition.string.begin.php",
+          "punctuation.definition.string.end.php"
+        ],
+        "settings": {
+          "foreground": "#CE9178"
+        }
+      },
+      {
+        "scope": [
+          "comment.line.double-slash.php",
+          "comment.block.php",
+          "punctuation.definition.comment.php"
+        ],
+        "settings": {
+          "foreground": "#6A9955"
+        }
+      },
+      {
+        "scope": [
+          "keyword.control.python",
+          "keyword.operator.python",
+          "keyword.other.python",
+          "storage.type.function.python",
+          "storage.type.class.python"
+        ],
+        "settings": {
+          "foreground": "#C586C0"
+        }
+      },
+      {
+        "scope": [
+          "entity.name.function.python",
+          "support.function.builtin.python",
+          "entity.name.type.class.python"
+        ],
+        "settings": {
+          "foreground": "#DCDCAA"
+        }
+      },
+      {
+        "scope": [
+          "entity.name.namespace.python",
+          "entity.name.type.class.python",
+          "support.type.python"
+        ],
+        "settings": {
+          "foreground": "#4EC9B0"
+        }
+      },
+      {
+        "scope": [
+          "variable.parameter.python",
+          "variable.other.python",
+          "variable.language.self.python",
+          "variable.language.special.self.python"
+        ],
+        "settings": {
+          "foreground": "#9CDCFE"
+        }
+      },
+      {
+        "scope": [
+          "string.quoted.single.python",
+          "string.quoted.double.python",
+          "string.quoted.triple.single.python",
+          "string.quoted.triple.double.python",
+          "punctuation.definition.string.begin.python",
+          "punctuation.definition.string.end.python"
+        ],
+        "settings": {
+          "foreground": "#CE9178"
+        }
+      },
+      {
+        "scope": [
+          "comment.line.number-sign.python",
+          "punctuation.definition.comment.python"
+        ],
+        "settings": {
+          "foreground": "#6A9955"
+        }
+      },
+      {
+        "scope": [
+          "constant.numeric.python",
+          "constant.language.python"
+        ],
+        "settings": {
+          "foreground": "#B5CEA8"
+        }
+      }
+    ]
+  },
+  
+  // Go言語固有の設定
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "golang.go",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.semanticHighlighting.enabled": false
+  },
+  
+  // PHP固有の設定
+  "[php]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.php-language-features",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.semanticHighlighting.enabled": true
+  },
+  
+  // Python固有の設定
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  
+  // Go拡張機能の設定
+  "go.useLanguageServer": true,
+  "go.lintOnSave": "package",
+  "go.vetOnSave": "package",
+  "gopls": {
+    "ui.semanticTokens": false
+  },
+  
+  // PHP拡張機能の設定
+  "intelephense.files.maxSize": 5000000,
+  "intelephense.format.enable": true,
+  
+  // Python拡張機能の設定
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true
+}
