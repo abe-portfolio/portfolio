@@ -1,0 +1,21 @@
+/* ページタイトルリンク */
+.page-title-link {
+    color: #1e90ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.page-title-link:hover {
+    text-decoration: underline;
+}
+  
+
+.page-title {
+    margin-bottom: 4px;   /* タイトル下の余白を縮める */
+}
+  
+.page-excerpt {
+    margin-top: 0;        /* 本文上の余白を消す */
+    color: #555;
+}
+  

@@ -2,60 +2,68 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
+	"net/http"
+	"os"
+	"time"
 
-	// ルーティング
 	"atcoder-wiki-backend/handler"
-	"atcoder-wiki-backend/logger"
-	"atcoder-wiki-backend/middleware"
 	"atcoder-wiki-backend/repository"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
 )
 
 func main() {
-	logger.Init()
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		dsn = "postgres://wikiuser:wikipass@localhost:5432/wiki?sslmode=disable"
+	}
 
-	dsn := "postgres://wikiuser:wikipass@localhost:5432/wiki"
-	conn, err := pgx.Connect(context.Background(), dsn)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	conn, err := pgx.Connect(ctx, dsn)
 	if err != nil {
-		log.Fatal("DB接続失敗:", err)
+		log.Fatalf("failed to connect db: %v", err)
 	}
 	defer conn.Close(context.Background())
 
-	fmt.Println("✅ DB接続完了")
+	repo := repository.NewPageRepository(conn)
+	h := handler.NewPageHandler(repo)
 
-	// Repository & Handler
-	pageRepo := repository.NewPageRepository(conn)
-	pageHandler := handler.NewPageHandler(pageRepo)
+	r := gin.Default()
 
-	// gin.Default()だとGinのLoggerが使用されるが、今回は自前のログを使用するため　gin.New()を使用
-	// r := gin.Default()
-	r := gin.New()
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://localhost:5173",
+		},
+		AllowMethods: []string{
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodDelete,
+			http.MethodOptions,
+		},
+		AllowHeaders: []string{
+			"Content-Type",
+			"Accept",
+		},
+		MaxAge: 12 * time.Hour,
+	}))
 
-	// ログ・リカバリ
-	r.Use(middleware.AccessLogger())
-	r.Use(middleware.SecurityLogger())
-	r.Use(gin.Recovery())
+	api := r.Group("/api")
+	{
+		api.GET("/pages", h.GetAllPages)
+		api.POST("/pages", h.CreatePage)
 
-	// 死活監視
-	r.GET("/health", func(c *gin.Context) {
-		c.JSON(200, gin.H{"status": "ok"})
-	})
+		api.GET("/pages/:slug", h.GetPageBySlug)
+		api.PUT("/pages/:slug", h.UpdatePageBySlug)
+		api.DELETE("/pages/:slug", h.DeletePageBySlug)
+	}
 
-	// ページ一覧取得API
-	r.GET("/api/pages", pageHandler.GetPages)
-	// ページ作成API
-	r.POST("/api/pages", pageHandler.CreatePage)
-	// slugからページ取得API
-	r.GET("/api/pages/:slug", pageHandler.GetPageBySlug)
-	// ページ編集API
-	r.PUT("/api/pages/:id", pageHandler.UpdatePage)
-	// ページ削除API
-	r.DELETE("/api/pages/:id", pageHandler.DeletePage)
-
-	fmt.Println("✅ Server起動 : http://localhost:8080")
-	r.Run(":8080")
+	if err := r.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }

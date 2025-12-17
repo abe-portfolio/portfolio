@@ -301,7 +301,35 @@ CREATE TABLE pages (
 
 
 
+▶ ステップ10：フロントエンドの開発
+　-> cd frontend
+　-> npm update        *React2Shell対策のため
+　-> npm audit           *React2Shell対策のため
+　-> npm create vite@latest . -- --template react-ts
+　-> npm install
+　-> npm install react-router-dom
+　-> npm run dev      *http://localhost:5173/
+  
+  
+  
+▶ ステップ11：Viteデモ用の不要なファイルを削除
+　-> rm src/assets/react.svg
+　-> rm src/App.css
+　-> rm src/index.css
+ 
+ 
+ 
+▶ ステップ12：src/App.tsxの内容を書き換える
 
 
 
 
+▶ ステップ13：TopPage.tsx を作成して「AtCoder Wiki」と表示する
+
+
+
+  
+  
+  
+  
+  

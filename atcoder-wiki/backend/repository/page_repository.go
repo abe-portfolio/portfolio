@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"strings"
 
 	"atcoder-wiki-backend/model"
 
@@ -34,7 +35,6 @@ func (r *PageRepository) GetAllPages(ctx context.Context) ([]model.Page, error) 
 
 	for rows.Next() {
 		var p model.Page
-		// rows.Scan() で構造体へ直接格納
 		err := rows.Scan(
 			&p.ID,
 			&p.Slug,
@@ -90,17 +90,31 @@ func (r *PageRepository) CreatePage(
 	return &p, nil
 }
 
-// slugからページ取得
+// slugからページ取得（tags込み）
 func (r *PageRepository) GetPageBySlug(ctx context.Context, slug string) (*model.Page, error) {
 	query := `
-		SELECT id, slug, title, content_md, created_at, updated_at
-		FROM pages
-		WHERE slug = $1
+		SELECT
+			p.id,
+			p.slug,
+			p.title,
+			p.content_md,
+			p.created_at,
+			p.updated_at,
+			COALESCE(
+				array_agg(t.name) FILTER (WHERE t.name IS NOT NULL),
+				ARRAY[]::text[]
+			) AS tags
+		FROM pages p
+		LEFT JOIN page_tags pt ON pt.page_id = p.id
+		LEFT JOIN tags t ON t.id = pt.tag_id
+		WHERE p.slug = $1
+		GROUP BY
+			p.id, p.slug, p.title, p.content_md, p.created_at, p.updated_at
 	`
 
 	var p model.Page
+	var tags []string
 
-	// QueryRow() 1行だけ取得
 	err := r.Conn.QueryRow(ctx, query, slug).Scan(
 		&p.ID,
 		&p.Slug,
@@ -108,16 +122,17 @@ func (r *PageRepository) GetPageBySlug(ctx context.Context, slug string) (*model
 		&p.ContentMD,
 		&p.CreatedAt,
 		&p.UpdatedAt,
+		&tags,
 	)
-
 	if err != nil {
 		return nil, err
 	}
 
+	p.Tags = tags
 	return &p, nil
 }
 
-// ページ編集
+// ページ編集（idベースのまま残す）
 func (r *PageRepository) UpdatePage(
 	ctx context.Context,
 	id int,
@@ -158,7 +173,7 @@ func (r *PageRepository) UpdatePage(
 	return &p, nil
 }
 
-// ページ削除
+// ページ削除（idベースのまま残す）
 func (r *PageRepository) DeletePage(
 	ctx context.Context,
 	id int,
@@ -179,4 +194,58 @@ func (r *PageRepository) DeletePage(
 	}
 
 	return nil
+}
+
+// tags を全入れ替え
+func (r *PageRepository) ReplaceTags(ctx context.Context, pageID int, tags []string) error {
+	uniq := make([]string, 0, len(tags))
+	seen := map[string]struct{}{}
+	for _, t := range tags {
+		s := strings.TrimSpace(t)
+		if s == "" {
+			continue
+		}
+		if _, ok := seen[s]; ok {
+			continue
+		}
+		seen[s] = struct{}{}
+		uniq = append(uniq, s)
+	}
+
+	tx, err := r.Conn.Begin(ctx)
+	if err != nil {
+		return err
+	}
+	defer func() { _ = tx.Rollback(ctx) }()
+
+	if _, err := tx.Exec(ctx, `DELETE FROM page_tags WHERE page_id = $1`, pageID); err != nil {
+		return err
+	}
+
+	if len(uniq) == 0 {
+		return tx.Commit(ctx)
+	}
+
+	for _, name := range uniq {
+		var tagID int
+		err := tx.QueryRow(ctx, `
+			INSERT INTO tags (name)
+			VALUES ($1)
+			ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
+			RETURNING id
+		`, name).Scan(&tagID)
+		if err != nil {
+			return err
+		}
+
+		if _, err := tx.Exec(ctx, `
+			INSERT INTO page_tags (page_id, tag_id)
+			VALUES ($1, $2)
+			ON CONFLICT DO NOTHING
+		`, pageID, tagID); err != nil {
+			return err
+		}
+	}
+
+	return tx.Commit(ctx)
 }

@@ -2,188 +2,198 @@ package handler
 
 import (
 	"context"
+	"errors"
+	"log"
 	"net/http"
-	"regexp"
-	"strconv"
 	"strings"
+	"time"
 
-	"atcoder-wiki-backend/logger"
 	"atcoder-wiki-backend/repository"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5"
 )
 
 type PageHandler struct {
 	Repo *repository.PageRepository
 }
 
-// リクエスト用 DTO
-type CreatePageRequest struct {
-	Title     string `json:"title"`
-	ContentMD string `json:"content_md"`
-}
-
-// PUT用 DTO
-type UpdatePageRequest struct {
-	Title     string `json:"title"`
-	ContentMD string `json:"content_md"`
-}
-
-// ページハンドラの初期化
 func NewPageHandler(repo *repository.PageRepository) *PageHandler {
 	return &PageHandler{Repo: repo}
 }
 
-// ページ一覧取得
-func (h *PageHandler) GetPages(c *gin.Context) {
-	pages, err := h.Repo.GetAllPages(context.Background())
+/* ---------- request ---------- */
+
+type createPageRequest struct {
+	Title     string   `json:"title"`
+	ContentMD string   `json:"content_md"`
+	Tags      []string `json:"tags"`
+}
+
+type updatePageRequest struct {
+	Title     string   `json:"title"`
+	ContentMD string   `json:"content_md"`
+	Tags      []string `json:"tags"`
+}
+
+/* ---------- handlers ---------- */
+
+func (h *PageHandler) GetAllPages(c *gin.Context) {
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 5*time.Second)
+	defer cancel()
+
+	pages, err := h.Repo.GetAllPages(ctx)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "cannot fetch pages",
-		})
+		log.Printf("[GetAllPages] err=%v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get pages"})
 		return
 	}
-
 	c.JSON(http.StatusOK, pages)
 }
 
-// slug生成   slug　：　URL用に安全に加工された「識別子用の文字列」　　（連想配列におけるキーみたいなイメージ）
-func generateSlug(title string) string {
-	slug := strings.ToLower(title)
-	slug = strings.TrimSpace(slug)
-
-	re := regexp.MustCompile(`[^a-z0-9]+`)
-	slug = re.ReplaceAllString(slug, "-")
-	slug = strings.Trim(slug, "-")
-
-	return slug
-}
-
-// ページ作成
-func (h *PageHandler) CreatePage(c *gin.Context) {
-	var req CreatePageRequest
-
-	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "invalid request body",
-		})
-		return
-	}
-
-	if req.Title == "" || req.ContentMD == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "title and content_md are required",
-		})
-		return
-	}
-
-	slug := generateSlug(req.Title)
-
-	page, err := h.Repo.CreatePage(
-		context.Background(),
-		slug,
-		req.Title,
-		req.ContentMD,
-	)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "failed to create page",
-		})
-		return
-	}
-
-	c.JSON(http.StatusCreated, page)
-}
-
-// slugからページ取得
 func (h *PageHandler) GetPageBySlug(c *gin.Context) {
 	slug := c.Param("slug")
 
-	if slug == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "slug is required",
-		})
-		return
-	}
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 5*time.Second)
+	defer cancel()
 
-	page, err := h.Repo.GetPageBySlug(context.Background(), slug)
+	page, err := h.Repo.GetPageBySlug(ctx, slug)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "page not found",
-		})
+		log.Printf("[GetPageBySlug] slug=%s err=%v", slug, err)
+		if errors.Is(err, pgx.ErrNoRows) {
+			c.JSON(http.StatusNotFound, gin.H{"error": "page not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get page"})
 		return
 	}
 
 	c.JSON(http.StatusOK, page)
 }
 
-// ページ編集
-func (h *PageHandler) UpdatePage(c *gin.Context) {
-	idParam := c.Param("id")
-
-	id, err := strconv.Atoi(idParam)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "invalid id",
-		})
-		return
-	}
-
-	var req UpdatePageRequest
+func (h *PageHandler) CreatePage(c *gin.Context) {
+	var req createPageRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "invalid request body",
-		})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid body"})
 		return
 	}
 
-	if req.Title == "" || req.ContentMD == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "title and content_md are required",
-		})
+	req.Title = strings.TrimSpace(req.Title)
+	if req.Title == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "title is required"})
 		return
 	}
 
-	page, err := h.Repo.UpdatePage(
-		context.Background(),
-		id,
-		req.Title,
-		req.ContentMD,
-	)
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 10*time.Second)
+	defer cancel()
 
+	slug := generateSlug(req.Title)
+
+	page, err := h.Repo.CreatePage(ctx, slug, req.Title, req.ContentMD)
 	if err != nil {
-		logger.ErrorLogger.Println("Update failed:", err)
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "page not found",
-		})
+		log.Printf("[CreatePage] insert err=%v", err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create page"})
 		return
 	}
 
-	c.JSON(http.StatusOK, page)
+	if err := h.Repo.ReplaceTags(ctx, page.ID, req.Tags); err != nil {
+		log.Printf("[CreatePage] ReplaceTags pageID=%d err=%v", page.ID, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save tags"})
+		return
+	}
+
+	out, err := h.Repo.GetPageBySlug(ctx, slug)
+	if err != nil {
+		log.Printf("[CreatePage] reload slug=%s err=%v", slug, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to load page"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, out)
 }
 
-// ページ削除
-func (h *PageHandler) DeletePage(c *gin.Context) {
-	idParam := c.Param("id")
+func (h *PageHandler) UpdatePageBySlug(c *gin.Context) {
+	slug := c.Param("slug")
 
-	id, err := strconv.Atoi(idParam)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "invalid id",
-		})
+	var req updatePageRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid body"})
 		return
 	}
 
-	err = h.Repo.DeletePage(context.Background(), id)
-	if err != nil {
-		logger.ErrorLogger.Println("Delete failed:", err)
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "page not found",
-		})
+	req.Title = strings.TrimSpace(req.Title)
+	if req.Title == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "title is required"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"result": "deleted",
-	})
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 10*time.Second)
+	defer cancel()
+
+	existing, err := h.Repo.GetPageBySlug(ctx, slug)
+	if err != nil {
+		log.Printf("[UpdatePageBySlug] load slug=%s err=%v", slug, err)
+		if errors.Is(err, pgx.ErrNoRows) {
+			c.JSON(http.StatusNotFound, gin.H{"error": "page not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to load page"})
+		return
+	}
+
+	_, err = h.Repo.UpdatePage(ctx, existing.ID, req.Title, req.ContentMD)
+	if err != nil {
+		log.Printf("[UpdatePageBySlug] update id=%d err=%v", existing.ID, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update page"})
+		return
+	}
+
+	if err := h.Repo.ReplaceTags(ctx, existing.ID, req.Tags); err != nil {
+		log.Printf("[UpdatePageBySlug] ReplaceTags id=%d err=%v", existing.ID, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update tags"})
+		return
+	}
+
+	out, err := h.Repo.GetPageBySlug(ctx, slug)
+	if err != nil {
+		log.Printf("[UpdatePageBySlug] reload slug=%s err=%v", slug, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to reload page"})
+		return
+	}
+
+	c.JSON(http.StatusOK, out)
+}
+
+func (h *PageHandler) DeletePageBySlug(c *gin.Context) {
+	slug := c.Param("slug")
+
+	ctx, cancel := context.WithTimeout(c.Request.Context(), 10*time.Second)
+	defer cancel()
+
+	page, err := h.Repo.GetPageBySlug(ctx, slug)
+	if err != nil {
+		log.Printf("[DeletePageBySlug] load slug=%s err=%v", slug, err)
+		if errors.Is(err, pgx.ErrNoRows) {
+			c.JSON(http.StatusNotFound, gin.H{"error": "page not found"})
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to load page"})
+		return
+	}
+
+	if err := h.Repo.DeletePage(ctx, page.ID); err != nil {
+		log.Printf("[DeletePageBySlug] delete id=%d err=%v", page.ID, err)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to delete page"})
+		return
+	}
+
+	c.Status(http.StatusNoContent)
+}
+
+/* ---------- util ---------- */
+
+func generateSlug(title string) string {
+	s := strings.ToLower(strings.TrimSpace(title))
+	s = strings.ReplaceAll(s, " ", "-")
+	return s
 }

@@ -9,4 +9,5 @@ type Page struct {
 	ContentMD string    `json:"content_md"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	Tags      []string  `json:"tags"`
 }

@@ -1,12 +1,18 @@
+◆仮想環境の作成
+mkdir プロジェクト名
+cd プロジェクト名
 python -m venv 仮想環境
-
 cd 仮想環境
 
+
 ◆仮想環境の有効化
-Scripts\activate.bat
+（Windows）Scripts\activate.bat
+（macOS）  source .venv/bin/activate
 
 ◆仮想環境の無効化
-Scripts\deactivate.bat
+（Windows）Scripts\deactivate.bat
+（macOS）  source .venv/bin/deactivate
+
 
 ◆仮想環境の削除
 仮想環境のルートディレクトリとなるフォルダごと削除すればよい
