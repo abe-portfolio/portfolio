@@ -118,7 +118,7 @@
   
   // Python 拡張機能の推奨設定
   "python.defaultInterpreterPath": "python",
-  "python.languageServer": "Pylance",
+  "python.languageServer": "None",
   
   // ==========================================
   // Python 設定セクション終了
