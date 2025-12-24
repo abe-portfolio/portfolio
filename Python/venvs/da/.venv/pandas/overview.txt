@@ -1,0 +1,13 @@
+# Install
+pip install pandas
+
+# update
+python.exe -m pip install --upgrade pip
+
+# jupyter notebook
+  - DataFrameなどはjupyter notebookが見やすいため。
+pip isntall jupyter notebook
+jupyter notebook
+
+# matplotlib（日本語対応）
+pip install japanize_matplotlib

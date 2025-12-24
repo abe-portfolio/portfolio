@@ -1,0 +1,6 @@
+# Install
+pip install numpy
+
+# update
+python.exe -m pip install --upgrade pip
+
