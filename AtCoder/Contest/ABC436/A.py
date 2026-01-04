@@ -1,17 +1,14 @@
 import sys
 
-def main():
-    input = sys.stdin.readline
+input = sys.stdin.readline
 
-    N = int(input())
-    S = input().strip()
-    
-    diff = N - len(S)
+N = int(input())
+S = input().strip()
 
-    for _ in range(diff):
-        S = "o" + S
-        
-    print(S)
+# diff = N - len(S)
+# for _ in range(diff):
+#     S = "o" + S
+#print(S)
 
-if __name__ == "__main__":
-    main()
+t = "o" * (N - len(S))
+print(t + S)

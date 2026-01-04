@@ -1,11 +1,7 @@
 import sys
 
-def main():
-    input = sys.stdin.readline
+input = sys.stdin.readline
 
-    A, B = map(int, input().split())
-    
-    print(A * 12 + B)
-    
-if __name__ == "__main__":
-    main()
+A, B = map(int, input().split())
+
+print(A * 12 + B)

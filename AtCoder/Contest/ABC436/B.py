@@ -1,29 +1,26 @@
 import sys
 
-def main():
-    input = sys.stdin.readline
-    N = int(input())
 
-    grid = [[0] * N for _ in range(N)]
+input = sys.stdin.readline
+N = int(input())
 
-    r = 0
-    c = (N - 1) // 2
-    grid[r][c] = 1
+grid = [[0] * N for _ in range(N)]
 
-    for k in range(2, N * N + 1):
-        nr = (r - 1) % N
-        nc = (c + 1) % N
+r = 0
+c = (N - 1) // 2
+grid[r][c] = 1
 
-        if grid[nr][nc] == 0:
-            r, c = nr, nc
-        else:
-            r = (r + 1) % N
-            # c はそのまま
+for k in range(2, N * N + 1):
+    nr = (r - 1) % N
+    nc = (c + 1) % N
 
-        grid[r][c] = k
+    if grid[nr][nc] == 0:
+        r, c = nr, nc
+    else:
+        r = (r + 1) % N
+        # c はそのまま
 
-    for row in grid:
-        print(*row)
+    grid[r][c] = k
 
-if __name__ == "__main__":
-    main()
+for row in grid:
+    print(*row)
