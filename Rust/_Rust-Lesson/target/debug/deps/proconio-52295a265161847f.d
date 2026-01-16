@@ -1,0 +1,10 @@
+/Users/melchior/Desktop/Github/portfolio/Rust/_Rust-Lesson/target/debug/deps/proconio-52295a265161847f.d: /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/lib.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/marker.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/mod.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/line.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/once.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/tokens.rs
+
+/Users/melchior/Desktop/Github/portfolio/Rust/_Rust-Lesson/target/debug/deps/libproconio-52295a265161847f.rmeta: /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/lib.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/marker.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/mod.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/line.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/once.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/tokens.rs
+
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/lib.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/marker.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/mod.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/line.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/once.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.4.5/src/source/tokens.rs:

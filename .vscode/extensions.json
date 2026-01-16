@@ -1,6 +1,7 @@
 {
   "recommendations": [
-    "golang.go"
+    "golang.go",
+    "rust-lang.rust-analyzer"
   ]
 }
 

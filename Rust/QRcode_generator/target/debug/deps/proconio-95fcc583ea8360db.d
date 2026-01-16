@@ -1,0 +1,10 @@
+/Users/melchior/Desktop/Github/portfolio/Rust/QRcode_generator/target/debug/deps/proconio-95fcc583ea8360db.d: /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/lib.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/marker.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/mod.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/line.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/once.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/tokens.rs
+
+/Users/melchior/Desktop/Github/portfolio/Rust/QRcode_generator/target/debug/deps/libproconio-95fcc583ea8360db.rmeta: /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/lib.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/marker.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/mod.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/line.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/once.rs /Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/tokens.rs
+
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/lib.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/marker.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/mod.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/line.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/once.rs:
+/Users/melchior/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proconio-0.5.0/src/source/tokens.rs:
